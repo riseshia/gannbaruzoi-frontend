@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { Vue, Component } from 'av-ts';
+import { Vue, Component } from 'av-ts'
 @Component({
   name: 'hello'
 })

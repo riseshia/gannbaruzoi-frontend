@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import * as Vue from 'vue'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
-import VueApollo from 'vue-apollo'
+import * as Vuex from 'vuex'
 import App from './App'
 import gql from 'graphql-tag'
 
@@ -16,39 +16,39 @@ const apolloClient = new ApolloClient({
   }),
 });
 
-// extends interface option
-// declare module 'vue/types/options' {
-//   interface ComponentOptions<V extends Vue> {
-//     ?apollo: {}
-//   }
-// }
+interface Query { allTasks: any }
+(<any>window).__APOLLO_QUERY__ = {
+  allTasks: gql`
+    query Tasks {
+      tasks(first: 5) {
+        edges {
+          cursor
+          node {
+            id
+            type
+            description
+          }
+        }
+        pageInfo {
+          hasNextPage
+        }
+      }
+    }`
+} as Query
+(<any>window).__APOLLO_CLIENT__ = apolloClient
+// window.__APOLLO_CLIENT__.query({query: window.__APOLLO_QUERY__.allTasks})
+Vue.use(Vuex)
 
-// Vue.use(VueApollo, {
-//   apolloClient,
-// })
+// extends interface option
+declare module 'vue/types/options' {
+  interface ComponentOptions<V extends Vue> {
+    vuex?: {}
+  }
+}
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   template: '<App/>',
   components: { App },
-  // apollo: {
-  //   allTasks: {
-  //     query: gql`query Tasks {
-  //                 tasks(first: 5) {
-  //                   edges {
-  //                     cursor
-  //                     node {
-  //                       id
-  //                       type
-  //                       description
-  //                     }
-  //                   }
-  //                   pageInfo {
-  //                     hasNextPage
-  //                   }
-  //                 }
-  //               }`
-  //   }
-  // }
 })
