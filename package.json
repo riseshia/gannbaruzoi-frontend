@@ -69,6 +69,7 @@
     "sinon-chai": "^2.8.0",
     "ts-loader": "^2.0.0",
     "typescript": "^2.1.6",
+    "typescript-standard": "^0.3.14",
     "url-loader": "^0.5.7",
     "vue-loader": "^10.3.0",
     "vue-style-loader": "^2.0.0",
