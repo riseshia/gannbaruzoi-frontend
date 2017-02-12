@@ -18,6 +18,10 @@
     "vuex": "^2.1.2"
   },
   "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.39",
+    "@types/sinon-chai": "^2.7.27",
+    "@types/webpack-env": "^1.13.0",
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",

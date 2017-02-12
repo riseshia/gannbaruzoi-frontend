@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2017",
+    "target": "es5",
     "sourceMap": true,
+    "allowJs": true,
     "experimentalDecorators": true,
     "lib": ["es2017", "dom"]
   },
