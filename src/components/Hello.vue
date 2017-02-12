@@ -21,14 +21,14 @@
 </template>
 
 <script>
-export default {
-  name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
+import { Vue, Component } from 'av-ts'
+@Component({
+  name: 'hello'
+})
+class Hello extends Vue {
+  msg: String = 'Welcome to Your Vue.js App'
 }
+export default Hello
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

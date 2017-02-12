@@ -6,14 +6,18 @@
 </template>
 
 <script>
+import { Vue, Component } from 'av-ts'
 import Hello from './components/Hello'
 
-export default {
+@Component({
   name: 'app',
   components: {
     Hello
   }
+})
+class App extends Vue {
 }
+export default App
 </script>
 
 <style>
