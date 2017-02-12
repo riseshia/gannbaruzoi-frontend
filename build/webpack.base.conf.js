@@ -28,7 +28,7 @@ module.exports = {
       'vue$': 'vue/dist/vue.common.js',
       'src': resolve('src'),
       'assets': resolve('src/assets'),
-      'components': resolve('src/components')
+      'components': resolve('src/components'),
     }
   },
   module: {
@@ -44,8 +44,11 @@ module.exports = {
         include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.tsx?/,
-        loader: 'vue-ts-loader',
+        test: /\.tsx?$/,
+        use: [
+          { loader: './loaders/standard-loader' },
+          { loader: 'vue-ts-loader' }
+        ],
         include: [resolve('src'), resolve('test')]
       },
       {

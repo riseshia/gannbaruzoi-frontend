@@ -9,10 +9,11 @@
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e"
+    "test": "yarn run unit && yarn run e2e",
+    "lint": "standard --pretty"
   },
   "dependencies": {
-    "apollo-client": "^0.8.4",
+    "apollo-client": "^0.8.5",
     "av-ts": "^0.6.3",
     "vue": "^2.1.10",
     "vuex": "^2.1.2"

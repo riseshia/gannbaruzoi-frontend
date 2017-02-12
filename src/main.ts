@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import * as Vue from 'vue'
 import * as Vuex from 'vuex'
-import App from './App'
+import App from './components/App'
 
 import Api from './api'
 
@@ -21,5 +21,5 @@ declare module 'vue/types/options' {
 new Vue({
   el: '#app',
   template: '<App/>',
-  components: { App },
+  components: { App }
 })

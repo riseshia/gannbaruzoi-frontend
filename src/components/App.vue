@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <img src="../assets/logo.png">
     <hello></hello>
   </div>
 </template>
 
 <script>
 import { Vue, Component } from 'av-ts'
-import Hello from './components/Hello'
+import Hello from './Hello'
 
 @Component({
   name: 'app',
