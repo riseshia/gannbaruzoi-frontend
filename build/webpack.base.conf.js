@@ -42,7 +42,7 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           { loader: 'vue-ts-loader' },
-          { loader: './loaders/standard-loader' }
+          { loader: 'tslint-loader' }
         ],
         include: [resolve('src'), resolve('test')]
       },
