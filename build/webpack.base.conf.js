@@ -19,7 +19,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.ts', '.vue', '.json'],
+    extensions: ['.js', '.ts', '.vue', '.json', '.graphql'],
     modules: [
       resolve('src'),
       resolve('node_modules')
@@ -37,6 +37,11 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig
+      },
+      {
+        test: /\.graphql$/,
+        loader: 'graphql-tag/loader',
+        include: [resolve('src'), resolve('test')]
       },
       {
         test: /\.tsx?$/,

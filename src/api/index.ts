@@ -1,26 +1,7 @@
 import ApolloClient, { createNetworkInterface } from "apollo-client";
 import { DocumentNode } from "graphql";
-import gql from "graphql-tag";
 
-interface Query { allTasks: DocumentNode; }
-const query = (window as any).__APOLLO_QUERY__ = {
-  allTasks: gql`
-    query Tasks {
-      tasks(first: 5) {
-        edges {
-          cursor
-          node {
-            id
-            type
-            description
-          }
-        }
-        pageInfo {
-          hasNextPage
-        }
-      }
-    }`
-} as Query;
+const Tasks = require("./Tasks.graphql") as DocumentNode;
 
 // Create the apollo client
 const apolloClient = (window as any).__APOLLO_CLIENT__ = new ApolloClient({
@@ -34,6 +15,6 @@ const apolloClient = (window as any).__APOLLO_CLIENT__ = new ApolloClient({
 
 export default {
   allTasks() {
-    return apolloClient.query({query: query.allTasks});
+    return apolloClient.query({query: Tasks});
   }
 };
