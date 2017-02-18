@@ -9,7 +9,7 @@ module.exports = {
       ? config.build.productionSourceMap
       : config.dev.cssSourceMap,
     extract: isProduction
-  }), { js: ['../../loaders/standard-loader', 'vue-ts-loader'] }),
+  }), { js: ['vue-ts-loader', '../../loaders/standard-loader'] }),
   esModule: true,
   postcss: [
     require('autoprefixer')({

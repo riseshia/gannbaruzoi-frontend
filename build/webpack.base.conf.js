@@ -39,15 +39,10 @@ module.exports = {
         options: vueLoaderConfig
       },
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
-      },
-      {
         test: /\.tsx?$/,
         use: [
-          { loader: './loaders/standard-loader' },
-          { loader: 'vue-ts-loader' }
+          { loader: 'vue-ts-loader' },
+          { loader: './loaders/standard-loader' }
         ],
         include: [resolve('src'), resolve('test')]
       },
