@@ -28,7 +28,7 @@ module.exports = {
       'vue$': 'vue/dist/vue.common.js',
       'src': resolve('src'),
       'assets': resolve('src/assets'),
-      'components': resolve('src/components')
+      'components': resolve('src/components'),
     }
   },
   module: {
@@ -39,13 +39,11 @@ module.exports = {
         options: vueLoaderConfig
       },
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
-      },
-      {
-        test: /\.tsx?/,
-        loader: 'vue-ts-loader',
+        test: /\.tsx?$/,
+        use: [
+          { loader: 'vue-ts-loader' },
+          { loader: 'tslint-loader' }
+        ],
         include: [resolve('src'), resolve('test')]
       },
       {
