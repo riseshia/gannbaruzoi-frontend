@@ -1,0 +1,15 @@
+query Tasks {
+  tasks(first: 5) {
+    edges {
+      cursor
+        node {
+          id
+            type
+            description
+        }
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+}
