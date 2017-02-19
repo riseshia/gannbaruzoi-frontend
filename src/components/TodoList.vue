@@ -1,11 +1,6 @@
 <template>
   <div class="todo-list">
     <h2>Todo List</h2>
-    <input
-      type="text"
-      v-model="newTodo"
-      placeholder="Type new task!"
-      @keyup.enter="createTodo">
     <ul>
       <li is="todo"
           v-for="todo in todos"
@@ -37,16 +32,6 @@ class TodoList extends Vue {
       { id: 2, description: "Todo 2", type: "ROOT",
         estimatedSize: 1, status: false },
     ]
-  }
-
-  newTodo = ""
-
-  createTodo() {
-    this.$emit("createTodo", {
-      description: this.newTodo,
-      estimatedSize: 1
-    })
-    this.newTodo = ""
   }
 }
 export default TodoList
