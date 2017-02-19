@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <img src="../assets/logo.png">
-    <hello></hello>
+    <todo-list></todo-list>
   </div>
 </template>
 
 <script>
-import { Vue, Component } from 'av-ts'
-import Hello from './Hello'
+import { Vue, Component } from "av-ts"
+import TodoList from "./TodoList"
 
 @Component({
-  name: 'app',
+  name: "app",
   components: {
-    Hello
+    TodoList
   }
 })
 class App extends Vue {
@@ -22,7 +22,7 @@ export default App
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
