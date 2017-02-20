@@ -1,14 +1,14 @@
 <template>
   <li class="todo">
-    {{ description }}
+    <input type="checkbox" v-model="instanceStatus"> {{ description }}
   </li>
 </template>
 
 <script>
-import { Vue, Component, Prop, p } from "av-ts"
+import { Vue, Component, Prop, p, Watch } from "av-ts"
 
 @Component({
-  name: "todo-list"
+  name: "todo"
 })
 class Todo extends Vue {
   @Prop todoId        = p({ type: Number, required: true })
@@ -16,6 +16,13 @@ class Todo extends Vue {
   @Prop type          = p({ type: String, required: true })
   @Prop estimatedSize = p({ type: Number, required: true })
   @Prop status        = p({ type: Boolean, required: true })
+
+  instanceStatus = this.status
+
+  @Watch("instanceStatus")
+  handler(newVal) {
+    this.$emit("update", { id: todoId, status: newVal })
+  }
 }
 export default Todo
 </script>
