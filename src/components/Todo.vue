@@ -1,8 +1,9 @@
 <template>
   <li class="todo">
     <input type="checkbox" v-model="instanceStatus">
+
     <label>
-      {{ description }}
+      ({{ estimatedSize }}) {{ description }}
       <a href="#" @click.prevent="deleteTodo">[x]</a>
     </label>
   </li>
