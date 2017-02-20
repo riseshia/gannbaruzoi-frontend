@@ -1,6 +1,10 @@
 <template>
   <li class="todo">
-    <input type="checkbox" v-model="instanceStatus"> {{ description }}
+    <input type="checkbox" v-model="instanceStatus">
+    <label>
+      {{ description }}
+      <a href="#" @click.prevent="deleteTodo">[x]</a>
+    </label>
   </li>
 </template>
 
@@ -21,7 +25,11 @@ class Todo extends Vue {
 
   @Watch("instanceStatus")
   handler(newVal) {
-    this.$emit("update", { id: todoId, status: newVal })
+    this.$emit("updateTodo", { id: this.todoId, status: newVal })
+  }
+
+  deleteTodo() {
+    this.$emit("deleteTodo", { id: this.todoId })
   }
 }
 export default Todo
