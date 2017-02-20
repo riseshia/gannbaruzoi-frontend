@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/riseshia/gannbaruzoi-frontend.svg?branch=master)](https://travis-ci.org/riseshia/gannbaruzoi-frontend)
 
-[Issues](https://github.com/riseshia/gannbaruzoi)
+[Issues](https://github.com/riseshia/gannbaruzoi/issues)
 
 ## Build Setup
 
