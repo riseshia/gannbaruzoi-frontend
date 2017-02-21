@@ -11,6 +11,6 @@ describe("Todo.vue", () => {
     }).$mount();
 
     const actual = vm.$el.textContent;
-    assert.match(actual, /Todo 1/);
+    assert.include(actual, "Todo 1");
   })
 });
