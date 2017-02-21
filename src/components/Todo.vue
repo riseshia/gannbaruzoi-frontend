@@ -16,11 +16,11 @@ import { Vue, Component, Prop, p, Watch } from "av-ts"
   name: "todo"
 })
 class Todo extends Vue {
-  @Prop todoId        = p({ type: Number, required: true })
-  @Prop description   = p({ type: String, required: true })
-  @Prop type          = p({ type: String, required: true })
+  @Prop todoId = p({ type: Number, required: true })
+  @Prop description = p({ type: String, required: true })
+  @Prop type = p({ type: String, required: true })
   @Prop estimatedSize = p({ type: Number, required: true })
-  @Prop status        = p({ type: Boolean, required: true })
+  @Prop status = p({ type: Boolean, required: true })
 
   instanceStatus = this.status
 
