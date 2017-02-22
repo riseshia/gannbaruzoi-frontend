@@ -10,7 +10,7 @@ describe("Todo.vue", () => {
       }
     }).$mount();
 
-    const actual = vm.$el.textContent;
+    const actual = <string> vm.$el.textContent;
     assert.include(actual, "Todo 1");
   })
 });

@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import { Vue, Component } from "av-ts"
+import * as Vue from "vue"
+import { Component } from "vue-property-decorator"
 import Todo from "./Todo"
 
 @Component({
