@@ -17,7 +17,6 @@ declare module "vue/types/options" {
   }
 }
 
-/* eslint-disable no-new */
 new Vue({
   el: "#app",
   template: "<App/>",

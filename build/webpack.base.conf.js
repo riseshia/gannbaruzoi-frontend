@@ -44,9 +44,14 @@ module.exports = {
         include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         use: [
-          { loader: 'vue-ts-loader' },
+          {
+            loader: 'ts-loader',
+            options: {
+              appendTsSuffixTo: [/\.vue$/]
+            }
+          },
           { loader: 'tslint-loader' }
         ],
         include: [resolve('src'), resolve('test')]

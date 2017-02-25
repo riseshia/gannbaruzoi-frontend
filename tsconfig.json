@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
     "target": "es5",
-    "sourceMap": true,
-    "allowJs": true,
+    "module": "commonjs",
     "experimentalDecorators": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
     "lib": ["es2017", "dom"]
   },
-  "exclude": [
-    "node_modules", "dist"
+  "include": [
+    "src", "test"
   ]
 }
