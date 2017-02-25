@@ -66,7 +66,6 @@
     "vue-property-decorator": "^3.4.0",
     "vue-style-loader": "^2.0.0",
     "vue-template-compiler": "^2.1.10",
-    "vue-ts-loader": "^0.0.3",
     "webpack": "^2.2.1",
     "webpack-bundle-analyzer": "^2.3.0",
     "webpack-dev-middleware": "^1.10.1",
