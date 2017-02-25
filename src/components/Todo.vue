@@ -3,7 +3,11 @@
     <input type="checkbox" v-model="instanceStatus">
 
     <label>
-      ({{ estimatedSize }}) {{ description }}
+      (<span contenteditable @keydown.enter.prevent.stop="updateEstimatedSize">
+      {{ estimatedSize }}
+      </span>)
+      <span contenteditable @keydown.enter.prevent.stop="updateDescription">
+        {{ description }}</span>
       <a href="#" @click.prevent="deleteTodo">[x]</a>
     </label>
   </li>
@@ -17,8 +21,6 @@ import { Component, Prop, Watch } from "vue-property-decorator"
   name: "todo"
 })
 class Todo extends Vue {
-  instanceStatus = this.status
-
   @Prop({ required: true })
   todoId: number
   @Prop({ required: true })
@@ -30,9 +32,23 @@ class Todo extends Vue {
   @Prop({ required: true })
   status: boolean
 
+  instanceStatus = this.status
+
   @Watch("instanceStatus")
   onInstanceStatusChanged(newVal: boolean) {
     this.$emit("updateTodo", { id: this.todoId, status: newVal })
+  }
+
+  updateDescription(e) {
+    this.$emit("updateTodo", {
+      id: this.todoId, description: e.target.innerText
+    })
+  }
+
+  updateEstimatedSize(e) {
+    this.$emit("updateTodo", {
+      id: this.todoId, estimatedSize: e.target.innerText as number
+    })
   }
 
   deleteTodo() {
