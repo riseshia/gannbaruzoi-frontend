@@ -5,8 +5,11 @@ describe("Todo.vue", () => {
   it("renders currect contents", () => {
     const vm = new Todo({
       propsData: {
-        todoId: 1, description: "Todo 1", type: "ROOT",
-        estimatedSize: 2, status: false,
+        description: "Todo 1",
+        estimatedSize: 2,
+        status: false,
+        todoId: 1,
+        type: "ROOT",
       },
     }).$mount()
 
