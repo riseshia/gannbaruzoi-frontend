@@ -3,24 +3,34 @@ import { Component } from "vue-property-decorator"
 import Todo from "./Todo.vue"
 
 @Component({
-  name: "todo-list",
   components: {
     Todo,
   },
+  name: "todo-list",
 })
 class TodoList extends Vue {
   get todos() {
     return [
-      { id: 1, description: "Todo 1", type: "ROOT",
-        estimatedSize: 3, status: false },
-      { id: 2, description: "Todo 2", type: "ROOT",
-        estimatedSize: 1, status: false },
+      {
+        description: "Todo 1",
+        estimatedSize: 3,
+        id: 1,
+        status: false,
+        type: "ROOT",
+      },
+      {
+        description: "Todo 2",
+        estimatedSize: 1,
+        id: 2,
+        status: false,
+        type: "ROOT",
+      },
     ]
   }
 
-  newTodo = ""
+  private newTodo = ""
 
-  createTodo() {
+  private createTodo() {
     this.$emit("createTodo", {
       description: this.newTodo,
       estimatedSize: 1,
