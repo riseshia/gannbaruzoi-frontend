@@ -39,4 +39,5 @@ class Todo extends Vue {
     this.$emit("deleteTodo", { id: this.todoId })
   }
 }
+export default Todo
 
