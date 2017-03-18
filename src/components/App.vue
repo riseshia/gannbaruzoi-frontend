@@ -6,18 +6,7 @@
 </template>
 
 <script>
-import * as Vue from "vue"
-import { Component } from "vue-property-decorator"
-import TodoList from "./TodoList"
-
-@Component({
-  name: "app",
-  components: {
-    TodoList
-  }
-})
-class App extends Vue {
-}
+import App from "./App.ts"
 export default App
 </script>
 

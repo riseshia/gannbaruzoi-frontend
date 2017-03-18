@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import * as Vue from "vue";
 import * as Vuex from "vuex";
-import App from "./components/App";
+import App from "./components/App.vue";
 
 import Api from "./api";
 
