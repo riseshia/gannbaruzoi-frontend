@@ -5,8 +5,8 @@ import Todo from "./Todo.vue"
 @Component({
   name: "todo-list",
   components: {
-    Todo
-  }
+    Todo,
+  },
 })
 class TodoList extends Vue {
   get todos() {
@@ -23,10 +23,9 @@ class TodoList extends Vue {
   createTodo() {
     this.$emit("createTodo", {
       description: this.newTodo,
-      estimatedSize: 1
+      estimatedSize: 1,
     })
     this.newTodo = ""
   }
 }
 export default TodoList
-

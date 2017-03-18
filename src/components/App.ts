@@ -5,10 +5,9 @@ import TodoList from "./TodoList.vue"
 @Component({
   name: "app",
   components: {
-    TodoList
-  }
+    TodoList,
+  },
 })
 class App extends Vue {
 }
 export default App
-

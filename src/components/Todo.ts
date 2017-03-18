@@ -2,7 +2,7 @@ import * as Vue from "vue"
 import { Component, Prop, Watch } from "vue-property-decorator"
 
 @Component({
-  name: "todo"
+  name: "todo",
 })
 class Todo extends Vue {
   @Prop({ required: true })
@@ -25,13 +25,13 @@ class Todo extends Vue {
 
   updateDescription(e) {
     this.$emit("updateTodo", {
-      id: this.todoId, description: e.target.innerText
+      id: this.todoId, description: e.target.innerText,
     })
   }
 
   updateEstimatedSize(e) {
     this.$emit("updateTodo", {
-      id: this.todoId, estimatedSize: e.target.innerText as number
+      id: this.todoId, estimatedSize: e.target.innerText as number,
     })
   }
 
@@ -40,4 +40,3 @@ class Todo extends Vue {
   }
 }
 export default Todo
-
