@@ -1,6 +1,6 @@
 import * as Vue from "vue"
 import { Component } from "vue-property-decorator"
-import TodoList from "./TodoList"
+import TodoList from "./TodoList.vue"
 
 @Component({
   name: "app",
