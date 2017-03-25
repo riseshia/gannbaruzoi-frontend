@@ -3,10 +3,10 @@ import { Component } from "vue-property-decorator"
 import TodoList from "./TodoList.vue"
 
 @Component({
-  name: "app",
   components: {
     TodoList,
   },
+  name: "app",
 })
 class App extends Vue {
 }

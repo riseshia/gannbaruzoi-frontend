@@ -17,8 +17,9 @@ declare module "vue/types/options" {
   }
 }
 
-new Vue({
+const vue = new Vue({
+  components: { App },
   el: "#app",
   template: "<App/>",
-  components: { App },
 })
+vue.$mount()

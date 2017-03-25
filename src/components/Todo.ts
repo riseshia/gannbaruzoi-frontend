@@ -6,36 +6,38 @@ import { Component, Prop, Watch } from "vue-property-decorator"
 })
 class Todo extends Vue {
   @Prop({ required: true })
-  todoId: number
+  private todoId: number
   @Prop({ required: true })
-  description: string
+  private description: string
   @Prop({ required: true })
-  type: string
+  private type: string
   @Prop({ required: true })
-  estimatedSize: number
+  private estimatedSize: number
   @Prop({ required: true })
-  status: boolean
+  private status: boolean
 
-  instanceStatus = this.status
+  private instanceStatus = this.status
 
   @Watch("instanceStatus")
-  onInstanceStatusChanged(newVal: boolean) {
+  private onInstanceStatusChanged(newVal: boolean) {
     this.$emit("updateTodo", { id: this.todoId, status: newVal })
   }
 
-  updateDescription(e) {
+  private updateDescription(e) {
     this.$emit("updateTodo", {
-      id: this.todoId, description: e.target.innerText,
+      description: e.target.innerText,
+      id: this.todoId,
     })
   }
 
-  updateEstimatedSize(e) {
+  private updateEstimatedSize(e) {
     this.$emit("updateTodo", {
-      id: this.todoId, estimatedSize: e.target.innerText as number,
+      estimatedSize: e.target.innerText as number,
+      id: this.todoId,
     })
   }
 
-  deleteTodo() {
+  private deleteTodo() {
     this.$emit("deleteTodo", { id: this.todoId })
   }
 }
