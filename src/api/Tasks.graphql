@@ -4,8 +4,11 @@ query Tasks {
       cursor
         node {
           id
-            type
-            description
+          type
+          description
+          logs {
+            id
+          }
         }
     }
     pageInfo {

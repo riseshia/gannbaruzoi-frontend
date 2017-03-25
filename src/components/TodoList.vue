@@ -14,6 +14,7 @@
           :type="todo.type"
           :estimatedSize="todo.estimatedSize"
           :status="todo.status"
+          :loggedSize="todo.logs.length"
       />
     </ul>
   </div>

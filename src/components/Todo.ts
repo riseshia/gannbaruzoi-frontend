@@ -14,6 +14,8 @@ class Todo extends Vue {
   @Prop({ required: true })
   private estimatedSize: number
   @Prop({ required: true })
+  private loggedSize: number
+  @Prop({ required: true })
   private status: boolean
 
   private instanceStatus = this.status
