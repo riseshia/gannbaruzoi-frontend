@@ -17,6 +17,10 @@ class TodoList extends Vue {
         id: 1,
         status: false,
         type: "ROOT",
+        logs: [
+          { id: 1 },
+          { id: 2 },
+        ],
       },
       {
         description: "Todo 2",
@@ -24,6 +28,7 @@ class TodoList extends Vue {
         id: 2,
         status: false,
         type: "ROOT",
+        logs: [],
       },
     ]
   }

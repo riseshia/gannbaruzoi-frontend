@@ -3,7 +3,7 @@
     <input type="checkbox" v-model="instanceStatus">
 
     <label>
-      (<span contenteditable @keydown.enter.prevent.stop="updateEstimatedSize">
+      ( {{ loggedSize }} /<span contenteditable @keydown.enter.prevent.stop="updateEstimatedSize">
       {{ estimatedSize }}
       </span>)
       <span contenteditable @keydown.enter.prevent.stop="updateDescription">
