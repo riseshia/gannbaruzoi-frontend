@@ -1,19 +1,15 @@
+import Vue from "vue"
 import TodoList from "@/components/TodoList"
-import { assert } from "chai"
 
 describe("TodoList.vue", () => {
-  let vm
-
-  beforeEach(() => {
-    vm = new TodoList().$mount()
-  })
+  let vm = new TodoList()
 
   it("renders correct contents", () => {
     const actual = vm.$el.querySelector(".todo-list h2").textContent
-    assert.strictEqual(actual, "Todo List")
+    expect(actual).toBe("Todo List")
   })
 
   it("have 2 computed todos", () => {
-    assert.strictEqual(vm.todos.length, 2)
+    expect(vm.todos.length).toBe(2)
   })
 })

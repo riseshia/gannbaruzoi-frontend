@@ -48,16 +48,16 @@ module.exports = {
         include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
-      },
-      {
         test: /\.ts$/,
         loader: 'ts-loader',
         options: {
           appendTsSuffixTo: [/\.vue$/]
         },
+        include: [resolve('src'), resolve('test')]
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
         include: [resolve('src'), resolve('test')]
       },
       {

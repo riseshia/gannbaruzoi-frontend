@@ -1,5 +1,4 @@
 import TodoListItem from "@/components/TodoListItem"
-import { assert } from "chai"
 
 describe("TodoListItem.vue", () => {
   it("renders currect contents", () => {
