@@ -2,14 +2,21 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "moduleResolution": "node",
+    "watch": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "removeComments": true,
     "sourceMap": true,
+    "sourceRoot": "./src",
+    "experimentalDecorators": true,
     "strictNullChecks": true,
-    "lib": ["es2017", "dom"]
+    "lib": ["es2017", "dom", "es2015.promise", "esnext.asynciterable"]
   },
   "include": [
-    "src", "test"
+    "src/**/*"
+  ],
+  "files" : [
+    "vue-shims.d.ts"
   ]
 }

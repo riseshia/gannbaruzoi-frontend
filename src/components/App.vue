@@ -5,9 +5,20 @@
   </div>
 </template>
 
-<script>
-import App from "./App.ts"
-export default App
+<script lang="ts">
+import * as Vue from "vue"
+import Component from "vue-class-component"
+import TodoList from "./TodoList"
+
+@Component({
+  name: "app",
+
+  components: {
+    'todo-list': TodoList,
+  },
+})
+export default class App extends Vue {
+}
 </script>
 
 <style>
