@@ -12,6 +12,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "apollo-client": "^1.9.3",
+    "graphql": "^0.11.7",
     "vue": "^2.4.2"
   },
   "devDependencies": {
@@ -41,10 +43,12 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
+    "graphql-tag": "^2.4.2",
     "html-webpack-plugin": "^2.30.1",
     "http-proxy-middleware": "^0.17.3",
     "jest": "^21.2.1",
     "jest-vue-preprocessor": "^1.2.0",
+    "jest-transform-graphql": "^2.1.0",
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
@@ -72,8 +76,9 @@
     },
     "mapCoverage": true,
     "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
+      "\\.graphql$": "<rootDir>/node_modules/jest-transform-graphql",
+      "\\.js$": "<rootDir>/node_modules/babel-jest",
+      "\\.vue$": "<rootDir>/node_modules/jest-vue-preprocessor"
     }
   },
   "engines": {

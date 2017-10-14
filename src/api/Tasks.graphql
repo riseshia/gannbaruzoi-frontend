@@ -1,0 +1,18 @@
+query Tasks($first: Int!) {
+  tasks(first: $first) {
+    edges {
+      cursor
+      node {
+        id
+        type
+        description
+        logs {
+          id
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+}
