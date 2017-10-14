@@ -1,5 +1,5 @@
+import TodoList from "@/components/TodoList"
 import { assert } from "chai"
-import TodoList from "src/components/TodoList"
 
 describe("TodoList.vue", () => {
   let vm
