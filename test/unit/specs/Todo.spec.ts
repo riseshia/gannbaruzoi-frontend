@@ -1,9 +1,9 @@
+import TodoListItem from "@/components/TodoListItem"
 import { assert } from "chai"
-import Todo from "src/components/Todo"
 
-describe("Todo.vue", () => {
+describe("TodoListItem.vue", () => {
   it("renders currect contents", () => {
-    const vm = new Todo({
+    const vm = new TodoListItem({
       propsData: {
         description: "Todo 1",
         estimatedSize: 2,
