@@ -13,7 +13,7 @@ describe("Todo.vue", () => {
       },
     }).$mount()
 
-    const actual = <string> vm.$el.textContent
+    const actual = vm.$el.textContent as string
     assert.include(actual, "Todo 1")
   })
 })

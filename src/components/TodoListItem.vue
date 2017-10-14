@@ -14,11 +14,11 @@
 </template>
 
 <script lang="ts">
-import * as Vue from "vue"
+import Vue from "vue"
 import Component from "vue-class-component"
 
 @Component({
-  name: "todo",
+  name: "todo-list-item",
 
   // watch: {
   //   instanceStatus: {
@@ -37,7 +37,7 @@ import Component from "vue-class-component"
     status: Boolean,
   },
 })
-export default class Todo extends Vue {
+export default class TodoListItem extends Vue {
   todoId: number
   description: string
   estimatedSize: number

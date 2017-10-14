@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import * as Vue from "vue"
+import Vue from "vue"
 import Component from "vue-class-component"
 import TodoList from "./TodoList"
 
@@ -14,7 +14,7 @@ import TodoList from "./TodoList"
   name: "app",
 
   components: {
-    'todo-list': TodoList,
+    TodoList,
   },
 })
 export default class App extends Vue {

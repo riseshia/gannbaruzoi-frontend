@@ -7,7 +7,7 @@
       placeholder="Type new task!"
       @keyup.enter="createTodo">
     <ul>
-      <li is="todo"
+      <li is="todo-list-item"
           v-for="todo in todos"
           :todoId="todo.id"
           :description="todo.description"
@@ -21,15 +21,15 @@
 </template>
 
 <script lang="ts">
-import * as Vue from "vue"
+import Vue from "vue"
 import Component from "vue-class-component"
-import Todo from "./Todo"
+import TodoListItem from "./TodoListItem"
 
 @Component({
   name: "todo-list",
 
   components: {
-    'todo': Todo,
+    TodoListItem,
   },
 })
 export default class TodoList extends Vue {

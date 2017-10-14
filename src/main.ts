@@ -1,10 +1,9 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import * as Vue from "vue"
-import * as Vuex from "vuex"
-import App from "./components/App"
-
+import Vue from "vue"
+import Vuex from "vuex"
 import Api from "./api"
+import App from "./components/App.vue"
 
 Api.allTasks()
 

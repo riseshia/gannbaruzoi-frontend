@@ -1,6 +1,6 @@
 // Polyfill fn.bind() for PhantomJS
 /* tslint:disable-next-line:no-var-requires */
-(<any> Function.prototype).bind = require("function-bind")
+(Function.prototype as any).bind = require("function-bind")
 
 // require all test files (files that ends with .spec.js)
 const testsContext: any = require.context("./specs", true, /\.spec$/)
