@@ -9,11 +9,11 @@
     "start": "npm run dev",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
-    "test": "jest"
+    "test": "VCR_MODE=cache jest"
   },
   "dependencies": {
-    "apollo-client": "^1.9.3",
     "graphql": "^0.11.7",
+    "isomorphic-fetch": "^2.2.1",
     "vue": "^2.4.2"
   },
   "devDependencies": {
@@ -41,14 +41,15 @@
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.14.1",
     "extract-text-webpack-plugin": "^3.0.0",
+    "fetch-vcr": "^1.1.1",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "graphql-tag": "^2.4.2",
     "html-webpack-plugin": "^2.30.1",
     "http-proxy-middleware": "^0.17.3",
     "jest": "^21.2.1",
-    "jest-vue-preprocessor": "^1.2.0",
     "jest-transform-graphql": "^2.1.0",
+    "jest-vue-preprocessor": "^1.2.0",
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
@@ -72,7 +73,9 @@
       "vue"
     ],
     "moduleNameMapper": {
-      "^@/components/([^\\.]*)$": "<rootDir>/src/components/$1.vue"
+      "isomophic-fetch": "fetch-vcr",
+      "^@/components/([^\\.]*)$": "<rootDir>/src/components/$1.vue",
+      "^@/([^\\.]*)$": "<rootDir>/src/$1.js"
     },
     "mapCoverage": true,
     "transform": {

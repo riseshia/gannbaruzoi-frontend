@@ -1,18 +1,27 @@
-import ApolloClient, { createBatchingNetworkInterface } from "apollo-client"
-
 import Tasks from './Tasks.graphql'
+import CreateTask from './CreateTask.graphql'
+import fetch from 'isomophic-fetch'
 
-// Create the apollo client
-const apolloClient = (window as any).__APOLLO_CLIENT__ = new ApolloClient({
-  networkInterface: createBatchingNetworkInterface({
-    uri: "http://localhost:4000/api",
-    batchInterval: 10,
-    batchMax: 10,
-  }),
-})
+async function query(graphqlQuery, variables) {
+  const response = await fetch("http://localhost:4000/api", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      query: graphqlQuery.loc.source.body,
+      variables,
+    })
+  })
+  const json = await response.json()
+  return json
+}
 
 export default {
-  Tasks() {
-    return apolloClient.query({query: Tasks, variables: { first: 5 }})
+  async Tasks(variables) {
+    return query(Tasks, variables)
+  },
+  async CreateTask(variables) {
+    return query(CreateTask, variables)
   },
 }
