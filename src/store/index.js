@@ -1,5 +1,5 @@
 import api from '@/api/index'
-import * as uuid from 'uuid/v4'
+import uuid from 'uuid/v4'
 
 export default {
   strict: true,

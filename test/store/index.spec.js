@@ -115,9 +115,9 @@ describe("store", () => {
       expect(after - before).toBe(1)
     })
 
-    xit("MAKE_MUTATION_ID_TASK", () => {
+    it("MAKE_MUTATION_ID_TASK", () => {
       store.mutations.MAKE_MUTATION_ID_TASK(state)
-      expect(state.newTask.clientMutationId).toBe(null)
+      expect(state.newTask.clientMutationId).not.toBe(null)
     })
 
     it("START_LOADING", () => {
