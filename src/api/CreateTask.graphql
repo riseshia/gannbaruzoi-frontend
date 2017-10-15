@@ -13,9 +13,9 @@ mutation CreateTask(
     task {
       id
       description
-      estimated_size
+      estimatedSize
       type
-      parent_id
+      parentId
       status
     }
   }

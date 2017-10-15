@@ -44,9 +44,9 @@ describe("api", () => {
             task: {
               type: "ROOT",
               status: false,
-              parent_id: null,
-              id: "2",
-              estimated_size: 5,
+              parentId: null,
+              id: "3",
+              estimatedSize: 5,
               description: "make cookie"
             }
           }
