@@ -14,12 +14,13 @@
   "dependencies": {
     "graphql": "^0.11.7",
     "isomorphic-fetch": "^2.2.1",
-    "vue": "^2.4.2"
+    "vue": "^2.5.2",
+    "vuex": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-preset-env": "^1.3.2",
@@ -73,7 +74,7 @@
       "vue"
     ],
     "moduleNameMapper": {
-      "isomophic-fetch": "fetch-vcr",
+      "isomorphic-fetch": "fetch-vcr",
       "^@/components/([^\\.]*)$": "<rootDir>/src/components/$1.vue",
       "^@/([^\\.]*)$": "<rootDir>/src/$1.js"
     },
