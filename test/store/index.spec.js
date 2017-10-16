@@ -38,20 +38,20 @@ describe("store", () => {
       await testAction(store.actions.TASKS, { first: 5 }, {}, [
         { type: 'START_LOADING' },
         { type: 'UPDATE_TASKS', payload: {
-          "data": {
-            "tasks": {
-              "edges": [{
-                "cursor": "YXJyYXljb25uZWN0aW9uOjA=",
-                  "node": {
-                    "description": "make cookie",
-                      "id": "1",
-                      "logs": [],
-                      "type": "ROOT"
-                  },
-              }],
-              "pageInfo": {
-                "hasNextPage": false,
-              }
+          data: {
+            tasks: {
+              pageInfo: {
+                hasNextPage:false
+              },
+              edges: [{
+                node: {
+                  type: "ROOT",
+                  logs: [],
+                  id: "1",
+                  description: "make cookie"
+                },
+                cursor: "YXJyYXljb25uZWN0aW9uOjA="
+              }]
             }
           }
         } },
@@ -59,7 +59,36 @@ describe("store", () => {
       ])
     })
 
-    xit("CREATE_TASK", async () => {
+    it("CREATE_TASK", async () => {
+      const state = {
+        newTask: {
+          clientMutationId: "some-random-string",
+          description: "make cookie",
+          estimatedSize: 5,
+          parentId: null
+        }
+      }
+
+      await testAction(store.actions.CREATE_TASK, null, state, [
+        { type: 'START_LOADING' },
+        { type: 'MAKE_MUTATION_ID_TASK' },
+        { type: 'PUSH_TASK', payload: {
+          data: {
+            createTask: {
+              task: {
+                type: "ROOT",
+                status: false,
+                parentId: null,
+                id: "3",
+                estimatedSize: 5,
+                description: "make cookie"
+              }
+            }
+          }
+        } },
+        { type: 'UPDATE_NEW_TASK', payload: { description: '' } },
+        { type: 'FINISH_LOADING' }
+      ])
     })
   })
 
