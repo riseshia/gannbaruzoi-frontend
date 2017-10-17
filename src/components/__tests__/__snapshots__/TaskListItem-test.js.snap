@@ -2,9 +2,9 @@
 
 exports[`TaskListItem.vue renders correct contents 1`] = `
 "<li class=\\"task\\"><input type=\\"checkbox\\"> <label>
-    (  /<span contenteditable=\\"true\\">
-    
+    ( 0 /<span contenteditable=\\"true\\">
+    5
     </span>)
     <span contenteditable=\\"true\\">
-      </span> <a href=\\"#\\">[x]</a></label></li>"
+      今日も一日かんばるぞい</span> <a href=\\"#\\">[x]</a></label></li>"
 `;
