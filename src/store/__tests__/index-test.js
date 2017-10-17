@@ -7,63 +7,83 @@ fetch.configure({
 
 describe('store', () => {
   describe('actions', () => {
-    it('TASKS', async () => {
-      await testAction(store.actions.TASKS, { first: 5 }, {}, [
-        { type: 'START_LOADING' },
-        { type: 'UPDATE_TASKS',
-          payload: {
-            data: {
-              tasks: {
-                pageInfo: {
-                  hasNextPage: false
-                },
-                edges: [{
-                  node: {
-                    type: 'ROOT',
-                    logs: [],
-                    id: '1',
-                    description: 'make cookie'
+    describe('TASKS', () => {
+      it('skips when loading', async () => {
+        await testAction(store.actions.TASKS, { first: 5 }, { loading: true }, [
+        ])
+      })
+      it('commit mutations', async () => {
+        await testAction(store.actions.TASKS, { first: 5 }, {}, [
+          { type: 'START_LOADING' },
+          { type: 'UPDATE_TASKS',
+            payload: {
+              data: {
+                tasks: {
+                  pageInfo: {
+                    hasNextPage: false
                   },
-                  cursor: 'YXJyYXljb25uZWN0aW9uOjA='
-                }]
-              }
-            }
-          } },
-        { type: 'FINISH_LOADING' }
-      ])
-    })
-
-    it('CREATE_TASK', async () => {
-      const state = {
-        newTask: {
-          clientMutationId: 'some-random-string',
-          description: 'make cookie',
-          estimatedSize: 5,
-          parentId: null
-        }
-      }
-
-      await testAction(store.actions.CREATE_TASK, null, state, [
-        { type: 'START_LOADING' },
-        { type: 'MAKE_MUTATION_ID_TASK' },
-        { type: 'PUSH_TASK',
-          payload: {
-            data: {
-              createTask: {
-                task: {
-                  type: 'ROOT',
-                  status: false,
-                  parentId: null,
-                  id: '3',
-                  estimatedSize: 5,
-                  description: 'make cookie'
+                  edges: [{
+                    node: {
+                      type: 'ROOT',
+                      logs: [],
+                      id: '1',
+                      description: 'make cookie'
+                    },
+                    cursor: 'YXJyYXljb25uZWN0aW9uOjA='
+                  }]
                 }
               }
-            }
-          } },
-        { type: 'UPDATE_NEW_TASK', payload: { description: '' } },
-        { type: 'FINISH_LOADING' }
-      ])
+            } },
+          { type: 'FINISH_LOADING' }
+        ])
+      })
+    })
+
+    describe('CREATE_TASK', () => {
+      it('skips when loading', async () => {
+        const state = {
+          loading: true,
+          newTask: {
+            clientMutationId: 'some-random-string',
+            description: 'make cookie',
+            estimatedSize: 5,
+            parentId: null
+          }
+        }
+        await testAction(store.actions.CREATE_TASK, null, state, [])
+      })
+      it('commit mutations', async () => {
+        const state = {
+          newTask: {
+            clientMutationId: 'some-random-string',
+            description: 'make cookie',
+            estimatedSize: 5,
+            parentId: null
+          }
+        }
+
+        await testAction(store.actions.CREATE_TASK, null, state, [
+          { type: 'START_LOADING' },
+          { type: 'MAKE_MUTATION_ID_TASK' },
+          { type: 'PUSH_TASK',
+            payload: {
+              data: {
+                createTask: {
+                  task: {
+                    type: 'ROOT',
+                    status: false,
+                    parentId: null,
+                    id: '3',
+                    estimatedSize: 5,
+                    description: 'make cookie'
+                  }
+                }
+              }
+            } },
+          { type: 'UPDATE_NEW_TASK', payload: { description: '' } },
+          { type: 'FINISH_LOADING' }
+        ])
+      })
     })
   })
 
