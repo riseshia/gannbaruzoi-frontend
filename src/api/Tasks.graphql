@@ -6,6 +6,7 @@ query Tasks($first: Int!) {
         id
         type
         description
+        estimatedSize
         logs {
           id
         }

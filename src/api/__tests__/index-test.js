@@ -19,6 +19,7 @@ describe('api', () => {
                 type: 'ROOT',
                 logs: [],
                 id: '1',
+                estimatedSize: 5,
                 description: 'make cookie'
               },
               cursor: 'YXJyYXljb25uZWN0aW9uOjA='

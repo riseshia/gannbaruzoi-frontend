@@ -12,6 +12,7 @@
         v-for="edge in tasks"
         :key="edge.cursor"
         v-bind="edge.node"
+        :logged-size="edge.node.logs.length"
       />
     </ul>
   </div>
