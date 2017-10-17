@@ -81,6 +81,14 @@
       "^@/([^\\.]*)$": "<rootDir>/src/$1.js"
     },
     "mapCoverage": true,
+    "cache": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,vue}",
+      "!src/main.js",
+      "!src/store/test-actions.js",
+      "!**/node_modules/**"
+    ],
+    "collectCoverage": true,
     "transform": {
       "\\.graphql$": "<rootDir>/node_modules/jest-transform-graphql",
       "\\.js$": "<rootDir>/node_modules/babel-jest",
