@@ -9,8 +9,38 @@
     "start": "npm run dev",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
+    "precommit": "lint-staged",
     "test": "VCR_MODE=cache jest",
     "jest": "VCR_MODE=cache jest"
+  },
+  "lint-staged": {
+    "*.js": ["eslint --fix", "git add"],
+    "*.vue": ["eslint --fix", "git add"]
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "moduleNameMapper": {
+      "isomorphic-fetch": "fetch-vcr",
+      "^@/components/([^\\.]*)$": "<rootDir>/src/components/$1.vue",
+      "^@/([^\\.]*)$": "<rootDir>/src/$1.js"
+    },
+    "mapCoverage": true,
+    "cache": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,vue}",
+      "!src/main.js",
+      "!src/store/test-actions.js",
+      "!**/node_modules/**"
+    ],
+    "collectCoverage": true,
+    "transform": {
+      "\\.graphql$": "<rootDir>/node_modules/jest-transform-graphql",
+      "\\.js$": "<rootDir>/node_modules/babel-jest",
+      "\\.vue$": "<rootDir>/node_modules/jest-vue-preprocessor"
+    }
   },
   "dependencies": {
     "graphql": "^0.11.7",
@@ -50,9 +80,11 @@
     "graphql-tag": "^2.4.2",
     "html-webpack-plugin": "^2.30.1",
     "http-proxy-middleware": "^0.17.3",
+    "husky": "^0.14.3",
     "jest": "^21.2.1",
     "jest-transform-graphql": "^2.1.0",
     "jest-vue-preprocessor": "^1.2.0",
+    "lint-staged": "^4.2.3",
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
@@ -70,31 +102,6 @@
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2",
     "webpack-merge": "^4.1.0"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "vue"
-    ],
-    "moduleNameMapper": {
-      "isomorphic-fetch": "fetch-vcr",
-      "^@/components/([^\\.]*)$": "<rootDir>/src/components/$1.vue",
-      "^@/([^\\.]*)$": "<rootDir>/src/$1.js"
-    },
-    "mapCoverage": true,
-    "cache": true,
-    "collectCoverageFrom": [
-      "src/**/*.{js,vue}",
-      "!src/main.js",
-      "!src/store/test-actions.js",
-      "!**/node_modules/**"
-    ],
-    "collectCoverage": true,
-    "transform": {
-      "\\.graphql$": "<rootDir>/node_modules/jest-transform-graphql",
-      "\\.js$": "<rootDir>/node_modules/babel-jest",
-      "\\.vue$": "<rootDir>/node_modules/jest-vue-preprocessor"
-    }
   },
   "engines": {
     "node": ">= 8.0.0",
