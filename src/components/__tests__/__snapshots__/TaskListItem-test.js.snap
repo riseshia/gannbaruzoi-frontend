@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskListItem.vue renders correct contents 1`] = `
+"<li class=\\"task\\"><input type=\\"checkbox\\"> <label>
+    (  /<span contenteditable=\\"true\\">
+    
+    </span>)
+    <span contenteditable=\\"true\\">
+      </span> <a href=\\"#\\">[x]</a></label></li>"
+`;
