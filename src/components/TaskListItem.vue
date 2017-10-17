@@ -49,7 +49,7 @@ export default {
     },
     updateEstimatedSize (e) {
       this.$emit('updateTask', {
-        estimatedSize: e.target.innerText,
+        stimatedSize: e.target.innerText,
         id: this.taskId
       })
     },
