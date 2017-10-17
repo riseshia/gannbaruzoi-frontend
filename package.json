@@ -9,7 +9,8 @@
     "start": "npm run dev",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
-    "test": "VCR_MODE=cache jest"
+    "test": "VCR_MODE=cache jest",
+    "jest": "VCR_MODE=cache jest"
   },
   "dependencies": {
     "graphql": "^0.11.7",

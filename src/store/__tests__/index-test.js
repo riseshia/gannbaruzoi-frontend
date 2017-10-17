@@ -1,8 +1,7 @@
 import store from '@/store/index'
 import fetch from 'fetch-vcr'
 fetch.configure({
-  fixturePath: `${__dirname}/../_fixtures`,
-  mode: 'cache'
+  fixturePath: `${__dirname}/../../api/__tests__/_fixtures`
 })
 
 const testAction = async (action, payload, state, expectedMutations) => {

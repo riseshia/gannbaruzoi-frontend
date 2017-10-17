@@ -1,8 +1,7 @@
 import api from '@/api/index'
 import fetch from 'fetch-vcr'
 fetch.configure({
-  fixturePath: `${__dirname}/../_fixtures`,
-  mode: 'cache'
+  fixturePath: `${__dirname}/_fixtures`
 })
 
 describe("api", () => {
