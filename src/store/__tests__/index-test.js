@@ -91,6 +91,20 @@ describe('store', () => {
         ])
       })
     })
+    it('UPDATE_NEW_TASK_DESCRIPTION', async () => {
+      const state = {
+        newTask: {
+          clientMutationId: 'some-random-string',
+          description: 'make cookie',
+          estimatedSize: 5,
+          parentId: null
+        }
+      }
+      await testAction(store.actions.UPDATE_NEW_TASK_DESCRIPTION,
+        'abc', state, [
+          { type: 'UPDATE_NEW_TASK', payload: { description: 'abc' } }
+        ])
+    })
   })
 
   describe('mutations', () => {
