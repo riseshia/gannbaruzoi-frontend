@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import TaskListItem from './TaskListItem'
 export default {
   name: 'task-list',
@@ -29,7 +29,7 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('TASKS', { first: 20 })
+    this.getTasks({ first: 20 })
   },
 
   computed: mapState({
@@ -38,14 +38,13 @@ export default {
   }),
 
   methods: {
-    createTask () {
-      this.$store.dispatch('CREATE_TASK')
-    },
+    ...mapActions({
+      getTasks: 'TASKS',
+      createTask: 'CREATE_TASK'
+    }),
 
     updateNewTaskDescription (e) {
-      this.$store.commit('UPDATE_NEW_TASK', {
-        description: e.target.value
-      })
+      this.$store.dispatch('UPDATE_NEW_TASK_DESCRIPTION', e.target.value)
     }
   }
 }

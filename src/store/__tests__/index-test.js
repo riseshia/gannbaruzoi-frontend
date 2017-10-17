@@ -1,9 +1,6 @@
 import store from '@/store/index'
 import { testAction } from '../test-actions'
-import fetch from 'fetch-vcr'
-fetch.configure({
-  fixturePath: `${__dirname}/../../api/__tests__/_fixtures`
-})
+import * as api from '@/api/index'
 
 describe('store', () => {
   describe('actions', () => {
@@ -13,6 +10,7 @@ describe('store', () => {
         ])
       })
       it('commit mutations', async () => {
+        api.tasks = jest.fn()
         await testAction(store.actions.TASKS, { first: 5 }, {}, [
           { type: 'START_LOADING' },
           { type: 'UPDATE_TASKS',
@@ -37,6 +35,9 @@ describe('store', () => {
             } },
           { type: 'FINISH_LOADING' }
         ])
+        expect(api.tasks.mock.calls).toEqual([
+          [{ first: 5 }]
+        ])
       })
     })
 
@@ -54,6 +55,7 @@ describe('store', () => {
         await testAction(store.actions.CREATE_TASK, null, state, [])
       })
       it('commit mutations', async () => {
+        api.createTask = jest.fn()
         const state = {
           newTask: {
             clientMutationId: 'some-random-string',
@@ -83,6 +85,9 @@ describe('store', () => {
             } },
           { type: 'UPDATE_NEW_TASK', payload: { description: '' } },
           { type: 'FINISH_LOADING' }
+        ])
+        expect(api.createTask.mock.calls).toEqual([
+          [state.newTask]
         ])
       })
     })

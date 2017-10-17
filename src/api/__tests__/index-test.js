@@ -1,4 +1,4 @@
-import api from '@/api/index'
+import { tasks, createTask } from '@/api/index'
 import fetch from 'fetch-vcr'
 fetch.configure({
   fixturePath: `${__dirname}/_fixtures`
@@ -7,7 +7,7 @@ fetch.configure({
 describe('api', () => {
   describe('Tasks', () => {
     it('returns json', async () => {
-      const payload = await api.Tasks({first: 5})
+      const payload = await tasks({first: 5})
       const expected = {
         data: {
           tasks: {
@@ -32,7 +32,7 @@ describe('api', () => {
   })
   describe('CreateTask', () => {
     it('returns json', async () => {
-      const payload = await api.CreateTask({
+      const payload = await createTask({
         clientMutationId: 'some-random-string',
         description: 'make cookie',
         estimatedSize: 5,

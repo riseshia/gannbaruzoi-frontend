@@ -10,12 +10,19 @@
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
     "precommit": "lint-staged",
+    "prepush": "yarn test",
     "test": "VCR_MODE=cache jest",
     "jest": "VCR_MODE=cache jest"
   },
   "lint-staged": {
-    "*.js": ["eslint --fix", "git add"],
-    "*.vue": ["eslint --fix", "git add"]
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.vue": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "jest": {
     "moduleFileExtensions": [
@@ -34,6 +41,9 @@
       "!src/main.js",
       "!src/store/test-actions.js",
       "!**/node_modules/**"
+    ],
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-vue"
     ],
     "collectCoverage": true,
     "transform": {
@@ -82,6 +92,7 @@
     "http-proxy-middleware": "^0.17.3",
     "husky": "^0.14.3",
     "jest": "^21.2.1",
+    "jest-serializer-vue": "^0.2.0",
     "jest-transform-graphql": "^2.1.0",
     "jest-vue-preprocessor": "^1.2.0",
     "lint-staged": "^4.2.3",
