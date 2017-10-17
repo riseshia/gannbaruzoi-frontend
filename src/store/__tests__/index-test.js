@@ -5,38 +5,39 @@ fetch.configure({
   fixturePath: `${__dirname}/../../api/__tests__/_fixtures`
 })
 
-describe("store", () => {
-  describe("actions", () => {
-    it("TASKS", async () => {
+describe('store', () => {
+  describe('actions', () => {
+    it('TASKS', async () => {
       await testAction(store.actions.TASKS, { first: 5 }, {}, [
         { type: 'START_LOADING' },
-        { type: 'UPDATE_TASKS', payload: {
-          data: {
-            tasks: {
-              pageInfo: {
-                hasNextPage:false
-              },
-              edges: [{
-                node: {
-                  type: "ROOT",
-                  logs: [],
-                  id: "1",
-                  description: "make cookie"
+        { type: 'UPDATE_TASKS',
+          payload: {
+            data: {
+              tasks: {
+                pageInfo: {
+                  hasNextPage: false
                 },
-                cursor: "YXJyYXljb25uZWN0aW9uOjA="
-              }]
+                edges: [{
+                  node: {
+                    type: 'ROOT',
+                    logs: [],
+                    id: '1',
+                    description: 'make cookie'
+                  },
+                  cursor: 'YXJyYXljb25uZWN0aW9uOjA='
+                }]
+              }
             }
-          }
-        } },
+          } },
         { type: 'FINISH_LOADING' }
       ])
     })
 
-    it("CREATE_TASK", async () => {
+    it('CREATE_TASK', async () => {
       const state = {
         newTask: {
-          clientMutationId: "some-random-string",
-          description: "make cookie",
+          clientMutationId: 'some-random-string',
+          description: 'make cookie',
           estimatedSize: 5,
           parentId: null
         }
@@ -45,27 +46,28 @@ describe("store", () => {
       await testAction(store.actions.CREATE_TASK, null, state, [
         { type: 'START_LOADING' },
         { type: 'MAKE_MUTATION_ID_TASK' },
-        { type: 'PUSH_TASK', payload: {
-          data: {
-            createTask: {
-              task: {
-                type: "ROOT",
-                status: false,
-                parentId: null,
-                id: "3",
-                estimatedSize: 5,
-                description: "make cookie"
+        { type: 'PUSH_TASK',
+          payload: {
+            data: {
+              createTask: {
+                task: {
+                  type: 'ROOT',
+                  status: false,
+                  parentId: null,
+                  id: '3',
+                  estimatedSize: 5,
+                  description: 'make cookie'
+                }
               }
             }
-          }
-        } },
+          } },
         { type: 'UPDATE_NEW_TASK', payload: { description: '' } },
         { type: 'FINISH_LOADING' }
       ])
     })
   })
 
-  describe("mutations", () => {
+  describe('mutations', () => {
     const state = {
       loading: true,
       newTask: {
@@ -78,14 +80,14 @@ describe("store", () => {
       }
     }
 
-    it("UPDATE_TASKS", () => {
+    it('UPDATE_TASKS', () => {
       store.mutations.UPDATE_TASKS(state, {
         data: { tasks: { edges: [1, 2, 3] } }
       })
       expect(state.tasks.edges).toEqual([1, 2, 3])
     })
 
-    it("UPDATE_NEW_TASK", () => {
+    it('UPDATE_NEW_TASK', () => {
       store.mutations.UPDATE_NEW_TASK(state, {
         description: 'abc'
       })
@@ -96,17 +98,17 @@ describe("store", () => {
       expect(state.newTask.description).toEqual('')
     })
 
-    it("PUSH_TASK", () => {
+    it('PUSH_TASK', () => {
       const payload = {
         data: {
           createTask: {
             task: {
-              type: "ROOT",
+              type: 'ROOT',
               status: false,
               parentId: null,
-              id: "3",
+              id: '3',
               estimatedSize: 5,
-              description: "make cookie"
+              description: 'make cookie'
             }
           }
         }
@@ -117,17 +119,17 @@ describe("store", () => {
       expect(after - before).toBe(1)
     })
 
-    it("MAKE_MUTATION_ID_TASK", () => {
+    it('MAKE_MUTATION_ID_TASK', () => {
       store.mutations.MAKE_MUTATION_ID_TASK(state)
       expect(state.newTask.clientMutationId).not.toBe(null)
     })
 
-    it("START_LOADING", () => {
+    it('START_LOADING', () => {
       store.mutations.START_LOADING(state)
       expect(state.loading).toBe(true)
     })
 
-    it("FINISH_LOADING", () => {
+    it('FINISH_LOADING', () => {
       store.mutations.FINISH_LOADING(state)
       expect(state.loading).toBe(false)
     })
