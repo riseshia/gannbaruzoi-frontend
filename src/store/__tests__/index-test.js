@@ -6,38 +6,44 @@ describe('store', () => {
   describe('actions', () => {
     describe('TASKS', () => {
       it('skips when loading', async () => {
-        await testAction(store.actions.TASKS, { first: 5 }, { loading: true }, [
-        ])
+        await testAction(
+          store.actions.TASKS,
+          { first: 5 },
+          { loading: true },
+          []
+        )
       })
       it('commit mutations', async () => {
         api.tasks = jest.fn()
         await testAction(store.actions.TASKS, { first: 5 }, {}, [
           { type: 'START_LOADING' },
-          { type: 'UPDATE_TASKS',
+          {
+            type: 'UPDATE_TASKS',
             payload: {
               data: {
                 tasks: {
                   pageInfo: {
                     hasNextPage: false
                   },
-                  edges: [{
-                    node: {
-                      type: 'ROOT',
-                      logs: [],
-                      id: '1',
-                      estimatedSize: 5,
-                      description: 'make cookie'
-                    },
-                    cursor: 'YXJyYXljb25uZWN0aW9uOjA='
-                  }]
+                  edges: [
+                    {
+                      node: {
+                        type: 'ROOT',
+                        logs: [],
+                        id: '1',
+                        estimatedSize: 5,
+                        description: 'make cookie'
+                      },
+                      cursor: 'YXJyYXljb25uZWN0aW9uOjA='
+                    }
+                  ]
                 }
               }
-            } },
+            }
+          },
           { type: 'FINISH_LOADING' }
         ])
-        expect(api.tasks.mock.calls).toEqual([
-          [{ first: 5 }]
-        ])
+        expect(api.tasks.mock.calls).toEqual([[{ first: 5 }]])
       })
     })
 
@@ -68,7 +74,8 @@ describe('store', () => {
         await testAction(store.actions.CREATE_TASK, null, state, [
           { type: 'START_LOADING' },
           { type: 'MAKE_MUTATION_ID_TASK' },
-          { type: 'PUSH_TASK',
+          {
+            type: 'PUSH_TASK',
             payload: {
               data: {
                 createTask: {
@@ -82,13 +89,12 @@ describe('store', () => {
                   }
                 }
               }
-            } },
+            }
+          },
           { type: 'UPDATE_NEW_TASK', payload: { description: '' } },
           { type: 'FINISH_LOADING' }
         ])
-        expect(api.createTask.mock.calls).toEqual([
-          [state.newTask]
-        ])
+        expect(api.createTask.mock.calls).toEqual([[state.newTask]])
       })
     })
     it('UPDATE_NEW_TASK_DESCRIPTION', async () => {
@@ -100,10 +106,12 @@ describe('store', () => {
           parentId: null
         }
       }
-      await testAction(store.actions.UPDATE_NEW_TASK_DESCRIPTION,
-        'abc', state, [
-          { type: 'UPDATE_NEW_TASK', payload: { description: 'abc' } }
-        ])
+      await testAction(
+        store.actions.UPDATE_NEW_TASK_DESCRIPTION,
+        'abc',
+        state,
+        [{ type: 'UPDATE_NEW_TASK', payload: { description: 'abc' } }]
+      )
     })
   })
 

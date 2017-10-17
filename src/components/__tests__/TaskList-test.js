@@ -18,16 +18,12 @@ describe('TaskList.vue', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
   it('getTasks', () => {
-    wrapper.vm.getTasks({first: 20})
-    expect(store.dispatch.mock.calls).toEqual([
-      ['TASKS', { first: 20 }]
-    ])
+    wrapper.vm.getTasks({ first: 20 })
+    expect(store.dispatch.mock.calls).toEqual([['TASKS', { first: 20 }]])
   })
   it('createTask', () => {
     wrapper.vm.createTask()
-    expect(store.dispatch.mock.calls).toEqual([
-      ['CREATE_TASK']
-    ])
+    expect(store.dispatch.mock.calls).toEqual([['CREATE_TASK']])
   })
   it('updateNewTaskDescription', () => {
     wrapper.vm.updateNewTaskDescription({ target: { value: '1' } })

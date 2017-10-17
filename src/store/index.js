@@ -18,7 +18,9 @@ export default {
 
   actions: {
     async TASKS ({ state, commit }, variables) {
-      if (state.loading) { return }
+      if (state.loading) {
+        return
+      }
       commit('START_LOADING')
       const payload = await tasks(variables)
       commit('UPDATE_TASKS', payload)
@@ -26,7 +28,9 @@ export default {
     },
 
     async CREATE_TASK ({ state, commit }) {
-      if (state.loading) { return }
+      if (state.loading) {
+        return
+      }
       commit('START_LOADING')
       commit('MAKE_MUTATION_ID_TASK')
       const payload = await createTask(state.newTask)

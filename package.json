@@ -8,6 +8,7 @@
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
     "build": "node build/build.js",
+    "prettier": "prettier --single-quote --no-semi --write src/**/*.js",
     "lint": "eslint --ext .js,.vue src",
     "precommit": "lint-staged",
     "prepush": "yarn test",
@@ -16,6 +17,7 @@
   },
   "lint-staged": {
     "*.js": [
+      "prettier --single-quote --no-semi --write",
       "eslint --fix",
       "git add"
     ],
@@ -100,6 +102,7 @@
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
     "portfinder": "^1.0.13",
+    "prettier": "1.7.4",
     "rimraf": "^2.6.0",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
