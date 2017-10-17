@@ -1,4 +1,4 @@
-import api from '@/api/index'
+import { tasks, createTask } from '@/api/index'
 import uuid from 'uuid/v4'
 
 export default {
@@ -18,21 +18,29 @@ export default {
 
   actions: {
     async TASKS ({ state, commit }, variables) {
-      if (state.loading) { return }
+      if (state.loading) {
+        return
+      }
       commit('START_LOADING')
-      const payload = await api.Tasks(variables)
+      const payload = await tasks(variables)
       commit('UPDATE_TASKS', payload)
       commit('FINISH_LOADING')
     },
 
     async CREATE_TASK ({ state, commit }) {
-      if (state.loading) { return }
+      if (state.loading) {
+        return
+      }
       commit('START_LOADING')
       commit('MAKE_MUTATION_ID_TASK')
-      const payload = await api.CreateTask(state.newTask)
+      const payload = await createTask(state.newTask)
       commit('PUSH_TASK', payload)
       commit('UPDATE_NEW_TASK', { description: '' })
       commit('FINISH_LOADING')
+    },
+
+    UPDATE_NEW_TASK_DESCRIPTION ({ commit }, description) {
+      commit('UPDATE_NEW_TASK', { description })
     }
   },
 

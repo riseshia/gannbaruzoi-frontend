@@ -17,12 +17,10 @@ async function query (graphqlQuery, variables) {
   return json
 }
 
-export default {
-  async Tasks (variables) {
-    return query(Tasks, variables)
-  },
+export async function tasks (variables) {
+  return query(Tasks, variables)
+}
 
-  async CreateTask (variables) {
-    return query(CreateTask, variables)
-  }
+export async function createTask (variables) {
+  return query(CreateTask, variables)
 }
