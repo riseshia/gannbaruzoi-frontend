@@ -9,7 +9,8 @@
     "start": "npm run dev",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
-    "test": "VCR_MODE=cache jest"
+    "test": "VCR_MODE=cache jest",
+    "jest": "VCR_MODE=cache jest"
   },
   "dependencies": {
     "graphql": "^0.11.7",
@@ -80,6 +81,14 @@
       "^@/([^\\.]*)$": "<rootDir>/src/$1.js"
     },
     "mapCoverage": true,
+    "cache": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,vue}",
+      "!src/main.js",
+      "!src/store/test-actions.js",
+      "!**/node_modules/**"
+    ],
+    "collectCoverage": true,
     "transform": {
       "\\.graphql$": "<rootDir>/node_modules/jest-transform-graphql",
       "\\.js$": "<rootDir>/node_modules/babel-jest",
