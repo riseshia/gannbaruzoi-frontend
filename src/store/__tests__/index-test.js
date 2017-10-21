@@ -3,12 +3,12 @@ import * as api from '@/api/index'
 
 describe('store', () => {
   describe('actions', () => {
-    describe('TASKS', () => {
+    describe('tasks', () => {
       it('skips when loading', async () => {
         const commit = jest.fn()
         const state = { loading: true }
 
-        store.actions.TASKS({ commit, state }, { first: 5 })
+        store.actions.tasks({ commit, state }, { first: 5 })
         expect(commit.mock.calls).toEqual([])
       })
 
@@ -37,7 +37,7 @@ describe('store', () => {
           }
         }
         api.tasks = jest.fn(() => Promise.resolve(payload))
-        await store.actions.TASKS({ commit, state }, { first: 5 })
+        await store.actions.tasks({ commit, state }, { first: 5 })
         expect(commit.mock.calls).toEqual([
           ['START_LOADING'],
           ['UPDATE_TASKS', payload],
@@ -47,7 +47,7 @@ describe('store', () => {
       })
     })
 
-    describe('CREATE_TASK', () => {
+    describe('createTask', () => {
       it('skips when loading', async () => {
         const commit = jest.fn()
         const state = {
@@ -59,7 +59,7 @@ describe('store', () => {
             parentId: null
           }
         }
-        await store.actions.CREATE_TASK({ state, commit })
+        await store.actions.createTask({ state, commit })
         expect(commit.mock.calls).toEqual([])
       })
       it('commit mutations', async () => {
@@ -88,7 +88,7 @@ describe('store', () => {
           }
         }
 
-        await store.actions.CREATE_TASK({ commit, state })
+        await store.actions.createTask({ commit, state })
         expect(api.tasks.mock.calls).toEqual([[{ first: 5 }]])
         expect(commit.mock.calls).toEqual([
           ['START_LOADING'],
@@ -100,7 +100,7 @@ describe('store', () => {
         expect(api.createTask.mock.calls).toEqual([[state.newTask]])
       })
     })
-    it('UPDATE_NEW_TASK_DESCRIPTION', async () => {
+    it('updateNewTaskDescription', async () => {
       const commit = jest.fn()
       const state = {
         newTask: {
@@ -110,7 +110,7 @@ describe('store', () => {
           parentId: null
         }
       }
-      await store.actions.UPDATE_NEW_TASK_DESCRIPTION({ commit, state }, 'abc')
+      await store.actions.updateNewTaskDescription({ commit, state }, 'abc')
       expect(commit.mock.calls).toEqual([
         ['UPDATE_NEW_TASK', { description: 'abc' }]
       ])

@@ -19,16 +19,16 @@ describe('TaskList.vue', () => {
   })
   it('getTasks', () => {
     wrapper.vm.getTasks({ first: 20 })
-    expect(store.dispatch.mock.calls).toEqual([['TASKS', { first: 20 }]])
+    expect(store.dispatch.mock.calls).toEqual([['tasks', { first: 20 }]])
   })
   it('createTask', () => {
     wrapper.vm.createTask()
-    expect(store.dispatch.mock.calls).toEqual([['CREATE_TASK']])
+    expect(store.dispatch.mock.calls).toEqual([['createTask']])
   })
   it('updateNewTaskDescription', () => {
     wrapper.vm.updateNewTaskDescription({ target: { value: '1' } })
     expect(store.dispatch.mock.calls).toEqual([
-      ['UPDATE_NEW_TASK_DESCRIPTION', '1']
+      ['updateNewTaskDescription', '1']
     ])
   })
 })

@@ -39,12 +39,12 @@ export default {
 
   methods: {
     ...mapActions({
-      getTasks: 'TASKS',
-      createTask: 'CREATE_TASK'
+      getTasks: 'tasks',
+      createTask: 'createTask'
     }),
 
     updateNewTaskDescription (e) {
-      this.$store.dispatch('UPDATE_NEW_TASK_DESCRIPTION', e.target.value)
+      this.$store.dispatch('updateNewTaskDescription', e.target.value)
     }
   }
 }

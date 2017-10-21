@@ -46,7 +46,7 @@
     "snapshotSerializers": [
       "<rootDir>/node_modules/jest-serializer-vue"
     ],
-    "collectCoverage": true,
+    "collectCoverage": false,
     "transform": {
       "\\.graphql$": "<rootDir>/node_modules/jest-transform-graphql",
       "\\.js$": "<rootDir>/node_modules/babel-jest",
