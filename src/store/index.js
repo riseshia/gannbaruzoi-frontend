@@ -17,7 +17,7 @@ export default {
   },
 
   actions: {
-    async TASKS ({ state, commit }, variables) {
+    async tasks ({ state, commit }, variables) {
       if (state.loading) {
         return
       }
@@ -27,7 +27,7 @@ export default {
       commit('FINISH_LOADING')
     },
 
-    async CREATE_TASK ({ state, commit }) {
+    async createTask ({ state, commit }) {
       if (state.loading) {
         return
       }
@@ -39,7 +39,7 @@ export default {
       commit('FINISH_LOADING')
     },
 
-    UPDATE_NEW_TASK_DESCRIPTION ({ commit }, description) {
+    updateNewTaskDescription ({ commit }, description) {
       commit('UPDATE_NEW_TASK', { description })
     }
   },

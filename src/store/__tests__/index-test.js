@@ -1,54 +1,55 @@
 import store from '@/store/index'
-import { testAction } from '../test-actions'
 import * as api from '@/api/index'
 
 describe('store', () => {
   describe('actions', () => {
-    describe('TASKS', () => {
+    describe('tasks', () => {
       it('skips when loading', async () => {
-        await testAction(
-          store.actions.TASKS,
-          { first: 5 },
-          { loading: true },
-          []
-        )
+        const commit = jest.fn()
+        const state = { loading: true }
+
+        store.actions.tasks({ commit, state }, { first: 5 })
+        expect(commit.mock.calls).toEqual([])
       })
+
       it('commit mutations', async () => {
-        api.tasks = jest.fn()
-        await testAction(store.actions.TASKS, { first: 5 }, {}, [
-          { type: 'START_LOADING' },
-          {
-            type: 'UPDATE_TASKS',
-            payload: {
-              data: {
-                tasks: {
-                  pageInfo: {
-                    hasNextPage: false
+        const commit = jest.fn()
+        const state = {}
+        const payload = {
+          data: {
+            tasks: {
+              pageInfo: {
+                hasNextPage: false
+              },
+              edges: [
+                {
+                  node: {
+                    type: 'ROOT',
+                    logs: [],
+                    id: '1',
+                    estimatedSize: 5,
+                    description: 'make cookie'
                   },
-                  edges: [
-                    {
-                      node: {
-                        type: 'ROOT',
-                        logs: [],
-                        id: '1',
-                        estimatedSize: 5,
-                        description: 'make cookie'
-                      },
-                      cursor: 'YXJyYXljb25uZWN0aW9uOjA='
-                    }
-                  ]
+                  cursor: 'YXJyYXljb25uZWN0aW9uOjA='
                 }
-              }
+              ]
             }
-          },
-          { type: 'FINISH_LOADING' }
+          }
+        }
+        api.tasks = jest.fn(() => Promise.resolve(payload))
+        await store.actions.tasks({ commit, state }, { first: 5 })
+        expect(commit.mock.calls).toEqual([
+          ['START_LOADING'],
+          ['UPDATE_TASKS', payload],
+          ['FINISH_LOADING']
         ])
         expect(api.tasks.mock.calls).toEqual([[{ first: 5 }]])
       })
     })
 
-    describe('CREATE_TASK', () => {
+    describe('createTask', () => {
       it('skips when loading', async () => {
+        const commit = jest.fn()
         const state = {
           loading: true,
           newTask: {
@@ -58,10 +59,26 @@ describe('store', () => {
             parentId: null
           }
         }
-        await testAction(store.actions.CREATE_TASK, null, state, [])
+        await store.actions.createTask({ state, commit })
+        expect(commit.mock.calls).toEqual([])
       })
       it('commit mutations', async () => {
-        api.createTask = jest.fn()
+        const commit = jest.fn()
+        const payload = {
+          data: {
+            createTask: {
+              task: {
+                type: 'ROOT',
+                status: false,
+                parentId: null,
+                id: '3',
+                estimatedSize: 5,
+                description: 'make cookie'
+              }
+            }
+          }
+        }
+        api.createTask = jest.fn(() => Promise.resolve(payload))
         const state = {
           newTask: {
             clientMutationId: 'some-random-string',
@@ -71,33 +88,20 @@ describe('store', () => {
           }
         }
 
-        await testAction(store.actions.CREATE_TASK, null, state, [
-          { type: 'START_LOADING' },
-          { type: 'MAKE_MUTATION_ID_TASK' },
-          {
-            type: 'PUSH_TASK',
-            payload: {
-              data: {
-                createTask: {
-                  task: {
-                    type: 'ROOT',
-                    status: false,
-                    parentId: null,
-                    id: '3',
-                    estimatedSize: 5,
-                    description: 'make cookie'
-                  }
-                }
-              }
-            }
-          },
-          { type: 'UPDATE_NEW_TASK', payload: { description: '' } },
-          { type: 'FINISH_LOADING' }
+        await store.actions.createTask({ commit, state })
+        expect(api.tasks.mock.calls).toEqual([[{ first: 5 }]])
+        expect(commit.mock.calls).toEqual([
+          ['START_LOADING'],
+          ['MAKE_MUTATION_ID_TASK'],
+          ['PUSH_TASK', payload],
+          ['UPDATE_NEW_TASK', { description: '' }],
+          ['FINISH_LOADING']
         ])
         expect(api.createTask.mock.calls).toEqual([[state.newTask]])
       })
     })
-    it('UPDATE_NEW_TASK_DESCRIPTION', async () => {
+    it('updateNewTaskDescription', async () => {
+      const commit = jest.fn()
       const state = {
         newTask: {
           clientMutationId: 'some-random-string',
@@ -106,12 +110,10 @@ describe('store', () => {
           parentId: null
         }
       }
-      await testAction(
-        store.actions.UPDATE_NEW_TASK_DESCRIPTION,
-        'abc',
-        state,
-        [{ type: 'UPDATE_NEW_TASK', payload: { description: 'abc' } }]
-      )
+      await store.actions.updateNewTaskDescription({ commit, state }, 'abc')
+      expect(commit.mock.calls).toEqual([
+        ['UPDATE_NEW_TASK', { description: 'abc' }]
+      ])
     })
   })
 
