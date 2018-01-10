@@ -14,6 +14,10 @@ module.exports = function (wallaby) {
       '**/*.vue': require('wallaby-vue-compiler')(wallaby.compilers.babel({}))
     },
 
+    preprocessors: {
+      '**/*.vue': file => require('jest-vue-preprocessor').process(file.content, file.path)
+    },
+
     setup: function (wallaby) {
       var jestConfig = require('./package.json').jest
       if (!jestConfig.globals) {
@@ -23,6 +27,7 @@ module.exports = function (wallaby) {
         '^@/(.*)$': wallaby.projectCacheDir + '/src/$1'
       }
       jestConfig.globals['__DEV__'] = true
+      delete jestConfig.transform['\\.vue$']
       wallaby.testFramework.configure(jestConfig)
     },
 
