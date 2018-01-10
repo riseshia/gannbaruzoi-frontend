@@ -2,8 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import Vuex from 'vuex'
-import App from './App'
-import storeConfig from './store/index'
+import App from '@/App'
+import storeConfig from '@/store'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
