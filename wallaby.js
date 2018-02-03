@@ -10,12 +10,19 @@ module.exports = function (wallaby) {
     },
 
     compilers: {
-      '**/*.js': wallaby.compilers.babel(),
-      '**/*.vue': require('wallaby-vue-compiler')(wallaby.compilers.babel({}))
+      '**/*.js': wallaby.compilers.babel({
+        presets: [['vue-app', { modules: 'commonjs' }], 'stage-2']
+      }),
+      '**/*.vue': require('wallaby-vue-compiler')(
+        wallaby.compilers.babel({
+          presets: [['vue-app', { modules: 'commonjs' }], 'stage-2']
+        })
+      )
     },
 
     preprocessors: {
-      '**/*.vue': file => require('jest-vue-preprocessor').process(file.content, file.path)
+      '**/*.vue': file =>
+        require('jest-vue-preprocessor').process(file.content, file.path)
     },
 
     setup: function (wallaby) {
