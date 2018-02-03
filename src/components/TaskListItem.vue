@@ -3,12 +3,17 @@
     <input type="checkbox" v-model="instanceStatus">
 
     <label>
-      ( {{ loggedSize }} /<span contenteditable @keydown.enter.prevent.stop="updateEstimatedSize">
-      {{ estimatedSize }}
-      </span>)
-      <span contenteditable @keydown.enter.prevent.stop="updateDescription">
-        {{ description }}</span>
-      <a href="#" @click.prevent="deleteTask">[x]</a>
+      ( {{ loggedSize }} /
+      <span
+        contenteditable
+        @keydown.enter.prevent.stop="updateEstimatedSize">{{ estimatedSize }}</span>
+      )
+      <span
+        contenteditable
+        @keydown.enter.prevent.stop="updateDescription">{{ description }}</span>
+      <a
+        href="#"
+        @click.prevent="deleteTask">[x]</a>
     </label>
   </li>
 </template>
