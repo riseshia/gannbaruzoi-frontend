@@ -20,7 +20,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import TaskListItem from './TaskListItem'
+import TaskListItem from '@/components/TaskListItem'
 export default {
   name: 'task-list',
 
