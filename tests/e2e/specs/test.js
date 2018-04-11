@@ -2,7 +2,7 @@
 
 describe('My First Test', () => {
   it('Visits the Kitchen Sink', () => {
-    cy.visit('/');
-    cy.contains('h1', 'Welcome to Your Vue.js App');
-  });
-});
+    cy.visit('/')
+    cy.contains('h1', 'Welcome to Your Vue.js App')
+  })
+})

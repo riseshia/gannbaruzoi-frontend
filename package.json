@@ -33,11 +33,25 @@
     "babel-jest": "^22.0.4",
     "babel-preset-stage-2": "^6.24.1",
     "jest-transform-graphql": "^2.1.0",
+    "lint-staged": "^6.0.0",
     "vue-template-compiler": "^2.5.13"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
 }

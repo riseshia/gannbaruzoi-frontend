@@ -1,32 +1,32 @@
-import Vue from 'vue';
-import { shallow } from '@vue/test-utils';
-import TaskList from '@/components/TaskList';
-import store from '@/store';
+import Vue from 'vue'
+import { shallow } from '@vue/test-utils'
+import TaskList from '@/components/TaskList'
+import store from '@/store'
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
 describe('TaskList.vue', () => {
-  let wrapper;
+  let wrapper
   beforeEach(() => {
-    store.dispatch = () => {};
-    wrapper = shallow(TaskList, { store });
-    store.dispatch = jest.fn();
-  });
+    store.dispatch = () => {}
+    wrapper = shallow(TaskList, { store })
+    store.dispatch = jest.fn()
+  })
   it('renders correct contents', () => {
-    expect(wrapper.html()).toMatchSnapshot();
-  });
+    expect(wrapper.html()).toMatchSnapshot()
+  })
   it('getTasks', () => {
-    wrapper.vm.getTasks({ first: 20 });
-    expect(store.dispatch.mock.calls).toEqual([['tasks', { first: 20 }]]);
-  });
+    wrapper.vm.getTasks({ first: 20 })
+    expect(store.dispatch.mock.calls).toEqual([['tasks', { first: 20 }]])
+  })
   it('createTask', () => {
-    wrapper.vm.createTask();
-    expect(store.dispatch.mock.calls).toEqual([['createTask']]);
-  });
+    wrapper.vm.createTask()
+    expect(store.dispatch.mock.calls).toEqual([['createTask']])
+  })
   it('updateNewTaskDescription', () => {
-    wrapper.vm.updateNewTaskDescription({ target: { value: '1' } });
+    wrapper.vm.updateNewTaskDescription({ target: { value: '1' } })
     expect(store.dispatch.mock.calls).toEqual([
-      ['updateNewTaskDescription', '1']
-    ]);
-  });
-});
+      ['updateNewTaskDescription', '1'],
+    ])
+  })
+})

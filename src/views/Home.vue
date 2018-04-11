@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import TaskList from '@/components/TaskList.vue';
+import TaskList from '@/components/TaskList.vue'
 
 export default {
   name: 'home',
   components: {
-    TaskList
-  }
-};
+    TaskList,
+  },
+}
 </script>

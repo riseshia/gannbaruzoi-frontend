@@ -1,9 +1,9 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import actions from './actions';
-import mutations from './mutations';
+import Vue from 'vue'
+import Vuex from 'vuex'
+import actions from './actions'
+import mutations from './mutations'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   strict: true,
@@ -11,14 +11,14 @@ export default new Vuex.Store({
     loading: false,
     newTask: {
       description: '',
-      estimatedSize: 5
+      estimatedSize: 5,
     },
     tasks: {
       edges: [],
-      pageInfo: {}
-    }
+      pageInfo: {},
+    },
   },
 
   mutations,
-  actions
-});
+  actions,
+})

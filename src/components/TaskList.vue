@@ -19,35 +19,35 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
-import TaskListItem from '@/components/TaskListItem';
+import { mapState, mapActions } from 'vuex'
+import TaskListItem from '@/components/TaskListItem'
 export default {
   name: 'TaskList',
 
   components: {
-    TaskListItem
+    TaskListItem,
   },
 
   created() {
-    this.getTasks({ first: 20 });
+    this.getTasks({ first: 20 })
   },
 
   computed: mapState({
     tasks: state => state.tasks.edges,
-    newTaskDescription: state => state.newTask.description
+    newTaskDescription: state => state.newTask.description,
   }),
 
   methods: {
     ...mapActions({
       getTasks: 'tasks',
-      createTask: 'createTask'
+      createTask: 'createTask',
     }),
 
     updateNewTaskDescription(e) {
-      this.$store.dispatch('updateNewTaskDescription', e.target.value);
-    }
-  }
-};
+      this.$store.dispatch('updateNewTaskDescription', e.target.value)
+    },
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

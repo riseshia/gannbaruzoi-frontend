@@ -4,6 +4,8 @@ module.exports = {
       .rule('graphql')
       .test(/\.graphql$/)
       .use('graphql-loader')
-      .loader('graphql-tag/loader');
-  }
-};
+      .loader('graphql-tag/loader')
+  },
+
+  lintOnSave: false,
+}
