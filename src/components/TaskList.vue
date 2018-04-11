@@ -19,17 +19,17 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
-import TaskListItem from '@/components/TaskListItem'
+import { mapState, mapActions } from 'vuex';
+import TaskListItem from '@/components/TaskListItem';
 export default {
-  name: 'task-list',
+  name: 'TaskList',
 
   components: {
     TaskListItem
   },
 
-  created () {
-    this.getTasks({ first: 20 })
+  created() {
+    this.getTasks({ first: 20 });
   },
 
   computed: mapState({
@@ -43,16 +43,17 @@ export default {
       createTask: 'createTask'
     }),
 
-    updateNewTaskDescription (e) {
-      this.$store.dispatch('updateNewTaskDescription', e.target.value)
+    updateNewTaskDescription(e) {
+      this.$store.dispatch('updateNewTaskDescription', e.target.value);
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {

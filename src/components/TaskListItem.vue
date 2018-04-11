@@ -30,10 +30,10 @@ export default {
     loggedSize: Number,
     status: Boolean
   },
-  data () {
+  data() {
     return {
       instanceStatus: this.status
-    }
+    };
   },
   watch: {
     instanceStatus: {
@@ -43,26 +43,26 @@ export default {
     }
   },
   methods: {
-    onInstanceStatusChanged (newVal) {
-      this.$emit('updateTask', { id: this.taskId, status: newVal })
+    onInstanceStatusChanged(newVal) {
+      this.$emit('updateTask', { id: this.taskId, status: newVal });
     },
-    updateDescription (e) {
+    updateDescription(e) {
       this.$emit('updateTask', {
         description: e.target.innerText,
         id: this.taskId
-      })
+      });
     },
-    updateEstimatedSize (e) {
+    updateEstimatedSize(e) {
       this.$emit('updateTask', {
         stimatedSize: e.target.innerText,
         id: this.taskId
-      })
+      });
     },
-    deleteTask () {
-      this.$emit('deleteTask', { id: this.taskId })
+    deleteTask() {
+      this.$emit('deleteTask', { id: this.taskId });
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
