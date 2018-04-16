@@ -1,1 +1,5 @@
-{ "presets": ["vue-app", "stage-2"] }
+{
+  "presets": [
+    "@vue/app"
+  ]
+}

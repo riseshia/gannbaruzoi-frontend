@@ -1,4 +1,4 @@
-module.exports = function (wallaby) {
+module.exports = function(wallaby) {
   return {
     files: ['src/**/*', '!src/**/__tests__/**/*', 'package.json'],
 
@@ -6,32 +6,32 @@ module.exports = function (wallaby) {
 
     env: {
       type: 'node',
-      runner: 'node'
+      runner: 'node',
     },
 
     compilers: {
       '**/*.js': wallaby.compilers.babel({
-        presets: [['vue-app', { modules: 'commonjs' }], 'stage-2']
+        presets: [['vue-app', { modules: 'commonjs' }], 'stage-2'],
       }),
       '**/*.vue': require('wallaby-vue-compiler')(
         wallaby.compilers.babel({
-          presets: [['vue-app', { modules: 'commonjs' }], 'stage-2']
+          presets: [['vue-app', { modules: 'commonjs' }], 'stage-2'],
         })
-      )
+      ),
     },
 
     preprocessors: {
       '**/*.vue': file =>
-        require('jest-vue-preprocessor').process(file.content, file.path)
+        require('jest-vue-preprocessor').process(file.content, file.path),
     },
 
-    setup: function (wallaby) {
+    setup: function(wallaby) {
       var jestConfig = require('./package.json').jest
       if (!jestConfig.globals) {
         jestConfig.globals = {}
       }
       jestConfig.moduleNameMapper = {
-        '^@/(.*)$': wallaby.projectCacheDir + '/src/$1'
+        '^@/(.*)$': wallaby.projectCacheDir + '/src/$1',
       }
       jestConfig.globals['__DEV__'] = true
       delete jestConfig.transform['\\.vue$']
@@ -39,6 +39,6 @@ module.exports = function (wallaby) {
     },
 
     testFramework: 'jest',
-    debug: true
+    debug: true,
   }
 }
