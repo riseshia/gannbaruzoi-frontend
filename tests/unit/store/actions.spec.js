@@ -1,5 +1,7 @@
 import actions from '@/store/actions'
 import * as api from '@/api'
+import Tasks from '@/api/Tasks.graphql'
+import CreateTask from '@/api/CreateTask.graphql'
 
 describe('actions', () => {
   describe('tasks', () => {
@@ -35,14 +37,14 @@ describe('actions', () => {
           },
         },
       }
-      api.tasks = jest.fn(() => Promise.resolve(payload))
+      api.query = jest.fn(() => Promise.resolve(payload))
       await actions.tasks({ commit, state }, { first: 5 })
       expect(commit.mock.calls).toEqual([
         ['START_LOADING'],
         ['UPDATE_TASKS', payload],
         ['FINISH_LOADING'],
       ])
-      expect(api.tasks.mock.calls).toEqual([[{ first: 5 }]])
+      expect(api.query.mock.calls).toEqual([[Tasks, { first: 5 }]])
     })
   })
 
@@ -77,7 +79,7 @@ describe('actions', () => {
           },
         },
       }
-      api.createTask = jest.fn(() => Promise.resolve(payload))
+      api.query = jest.fn(() => Promise.resolve(payload))
       const state = {
         newTask: {
           clientMutationId: 'some-random-string',
@@ -88,7 +90,9 @@ describe('actions', () => {
       }
 
       await actions.createTask({ commit, state })
-      expect(api.tasks.mock.calls).toEqual([[{ first: 5 }]])
+      expect(api.query.mock.calls).toEqual([
+        [CreateTask, state.newTask]
+      ])
       expect(commit.mock.calls).toEqual([
         ['START_LOADING'],
         ['MAKE_MUTATION_ID_TASK'],
@@ -96,7 +100,6 @@ describe('actions', () => {
         ['UPDATE_NEW_TASK', { description: '' }],
         ['FINISH_LOADING'],
       ])
-      expect(api.createTask.mock.calls).toEqual([[state.newTask]])
     })
   })
   it('updateNewTaskDescription', async () => {
