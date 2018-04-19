@@ -11,6 +11,7 @@
     "e2e:open": "vue-cli-service e2e:open"
   },
   "dependencies": {
+    "@babel/preset-stage-1": "^7.0.0-beta.44",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
     "isomorphic-fetch": "^2.2.1",
