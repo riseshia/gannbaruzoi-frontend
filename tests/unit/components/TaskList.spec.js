@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { shallow } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import TaskList from '@/components/TaskList'
 import store from '@/store'
 
@@ -9,7 +9,7 @@ describe('TaskList.vue', () => {
   let wrapper
   beforeEach(() => {
     store.dispatch = () => {}
-    wrapper = shallow(TaskList, { store })
+    wrapper = shallowMount(TaskList, { store })
     store.dispatch = jest.fn()
   })
   it('renders correct contents', () => {

@@ -1,4 +1,4 @@
-import { shallow } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import TaskListItem from '@/components/TaskListItem'
 
 describe('TaskListItem.vue', () => {
@@ -9,7 +9,7 @@ describe('TaskListItem.vue', () => {
     loggedSize: 0,
     status: false,
   }
-  const wrapper = shallow(TaskListItem, { propsData })
+  const wrapper = shallowMount(TaskListItem, { propsData })
   it('renders correct contents', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })

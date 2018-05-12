@@ -1,5 +1,8 @@
 module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'json', 'vue'],
+  testMatch: [
+    '<rootDir>/(tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx))',
+  ],
   transform: {
     '^.+\\.graphql$': 'jest-transform-graphql',
     '^.+\\.vue$': 'vue-jest',
