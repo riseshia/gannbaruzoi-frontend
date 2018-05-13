@@ -3,9 +3,8 @@
     <h2>Task List</h2>
     <input
       type="text"
-      :value="newTaskDescription"
+      v-model="description"
       placeholder="Type new task!"
-      @input="updateNewTaskDescription"
       @keyup.enter="createTask">
     <ul>
       <task-list-item
@@ -28,24 +27,32 @@ export default {
     TaskListItem,
   },
 
+  data() {
+    return {
+      description: '',
+      estimatedSize: 5,
+    }
+  },
   created() {
     this.getTasks({ first: 20 })
   },
 
   computed: mapState({
     tasks: state => state.tasks.edges,
-    newTaskDescription: state => state.newTask.description,
   }),
 
   methods: {
     ...mapActions({
       getTasks: 'tasks',
-      createTask: 'createTask',
+      async createTask(dispatch) {
+        try {
+          await dispatch('createTask', this.$data)
+        } catch (error) {
+          return
+        }
+        this.description = ''
+      },
     }),
-
-    updateNewTaskDescription(e) {
-      this.$store.dispatch('updateNewTaskDescription', e.target.value)
-    },
   },
 }
 </script>

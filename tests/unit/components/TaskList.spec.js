@@ -20,13 +20,16 @@ describe('TaskList.vue', () => {
     expect(store.dispatch.mock.calls).toEqual([['tasks', { first: 20 }]])
   })
   it('createTask', () => {
+    wrapper.vm.description = 'test it'
     wrapper.vm.createTask()
-    expect(store.dispatch.mock.calls).toEqual([['createTask']])
-  })
-  it('updateNewTaskDescription', () => {
-    wrapper.vm.updateNewTaskDescription({ target: { value: '1' } })
     expect(store.dispatch.mock.calls).toEqual([
-      ['updateNewTaskDescription', '1'],
+      [
+        'createTask',
+        {
+          description: 'test it',
+          estimatedSize: 5,
+        },
+      ],
     ])
   })
 })
