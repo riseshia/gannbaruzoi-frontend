@@ -1,0 +1,5 @@
+mutation($clientMutationId: String!, $id: ID!) {
+  deleteTask(input: { clientMutationId: $clientMutationId, id: $id }) {
+    id
+  }
+}

@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'task-list-item',
 
@@ -42,26 +44,26 @@ export default {
       deep: false,
     },
   },
-  methods: {
+  methods: mapActions({
     onInstanceStatusChanged(newVal) {
       this.$emit('updateTask', { id: this.taskId, status: newVal })
     },
-    updateDescription(e) {
-      this.$emit('updateTask', {
+    updateDescription(dispatch, e) {
+      dispatch('updateTask', {
         description: e.target.innerText,
         id: this.taskId,
       })
     },
-    updateEstimatedSize(e) {
-      this.$emit('updateTask', {
+    updateEstimatedSize(dispatch, e) {
+      dispatch('updateTask', {
         stimatedSize: e.target.innerText,
         id: this.taskId,
       })
     },
-    deleteTask() {
-      this.$emit('deleteTask', { id: this.taskId })
+    deleteTask(dispatch) {
+      dispatch('deleteTask', { id: this.taskId })
     },
-  },
+  }),
 }
 </script>
 
