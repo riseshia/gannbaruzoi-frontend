@@ -1,12 +1,9 @@
+import uuid from 'uuid/v4'
 import { query } from '@/api/index'
 import Tasks from '@/api/Tasks.graphql'
 import CreateTask from '@/api/CreateTask.graphql'
 
 export default {
-  updateNewTaskDescription({ commit }, description) {
-    commit('UPDATE_NEW_TASK', { description })
-  },
-
   async tasks({ state, commit }, variables) {
     if (state.loading) {
       return
@@ -17,15 +14,18 @@ export default {
     commit('FINISH_LOADING')
   },
 
-  async createTask({ state, commit }) {
+  async createTask({ state, commit }, input) {
     if (state.loading) {
       return
     }
     commit('START_LOADING')
-    commit('MAKE_MUTATION_ID_TASK')
-    const payload = await query(CreateTask, state.newTask)
+    const payload = await query(CreateTask, {
+      input: {
+        clientMutationId: uuid(),
+        ...input,
+      },
+    })
     commit('PUSH_TASK', payload)
-    commit('UPDATE_NEW_TASK', { description: '' })
     commit('FINISH_LOADING')
   },
 }

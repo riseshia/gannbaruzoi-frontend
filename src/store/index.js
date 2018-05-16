@@ -9,10 +9,6 @@ export default new Vuex.Store({
   strict: true,
   state: {
     loading: false,
-    newTask: {
-      description: '',
-      estimatedSize: 5,
-    },
     tasks: {
       edges: [],
       pageInfo: {},

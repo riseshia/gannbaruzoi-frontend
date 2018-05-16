@@ -53,14 +53,8 @@ describe('actions', () => {
       const commit = jest.fn()
       const state = {
         loading: true,
-        newTask: {
-          clientMutationId: 'some-random-string',
-          description: 'make cookie',
-          estimatedSize: 5,
-          parentId: null,
-        },
       }
-      await actions.createTask({ state, commit })
+      await actions.createTask({ state, commit }, {})
       expect(commit.mock.calls).toEqual([])
     })
     it('commit mutations', async () => {
@@ -80,41 +74,28 @@ describe('actions', () => {
         },
       }
       api.query = jest.fn(() => Promise.resolve(payload))
-      const state = {
-        newTask: {
-          clientMutationId: 'some-random-string',
-          description: 'make cookie',
-          estimatedSize: 5,
-          parentId: null,
-        },
+      const input = {
+        description: 'make cookie',
+        estimatedSize: 5,
       }
-
-      await actions.createTask({ commit, state })
+      jest.mock('uuid')
+      await actions.createTask({ commit, state: {} }, input)
       expect(api.query.mock.calls).toEqual([
-        [CreateTask, state.newTask]
+        [
+          CreateTask,
+          {
+            input: {
+              clientMutationId: '050b5d99-ac6f-429b-b814-b21b332f3a68',
+              ...input,
+            },
+          },
+        ],
       ])
       expect(commit.mock.calls).toEqual([
         ['START_LOADING'],
-        ['MAKE_MUTATION_ID_TASK'],
         ['PUSH_TASK', payload],
-        ['UPDATE_NEW_TASK', { description: '' }],
         ['FINISH_LOADING'],
       ])
     })
-  })
-  it('updateNewTaskDescription', async () => {
-    const commit = jest.fn()
-    const state = {
-      newTask: {
-        clientMutationId: 'some-random-string',
-        description: 'make cookie',
-        estimatedSize: 5,
-        parentId: null,
-      },
-    }
-    await actions.updateNewTaskDescription({ commit, state }, 'abc')
-    expect(commit.mock.calls).toEqual([
-      ['UPDATE_NEW_TASK', { description: 'abc' }],
-    ])
   })
 })
