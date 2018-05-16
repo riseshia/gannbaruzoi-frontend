@@ -20,8 +20,10 @@ export default {
     }
     commit('START_LOADING')
     const payload = await query(CreateTask, {
-      clientMutationId: uuid(),
-      input,
+      input: {
+        clientMutationId: uuid(),
+        ...input,
+      },
     })
     commit('PUSH_TASK', payload)
     commit('FINISH_LOADING')

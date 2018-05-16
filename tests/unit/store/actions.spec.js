@@ -84,8 +84,10 @@ describe('actions', () => {
         [
           CreateTask,
           {
-            clientMutationId: '050b5d99-ac6f-429b-b814-b21b332f3a68',
-            input,
+            input: {
+              clientMutationId: '050b5d99-ac6f-429b-b814-b21b332f3a68',
+              ...input,
+            },
           },
         ],
       ])
