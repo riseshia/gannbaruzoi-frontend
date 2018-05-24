@@ -1,8 +1,22 @@
-module.exports = function(wallaby) {
-  return {
-    files: ['src/**/*', '!src/**/__tests__/**/*', 'package.json'],
+module.exports = wallaby => {
+  process.env.VUE_CLI_BABEL_TRANSPILE_MODULES = true
 
-    tests: ['src/**/__tests__/*-test.js'],
+  const compiler = wallaby.compilers.babel({
+    presets: [
+      ['@vue/app', { modules: 'commonjs' }],
+      [
+        '@babel/preset-stage-1',
+        {
+          decoratorsLegacy: true,
+        },
+      ],
+    ],
+  })
+
+  return {
+    files: ['src/**/*', 'jest.config.js', 'package.json'],
+
+    tests: ['tests/**/*.spec.js'],
 
     env: {
       type: 'node',
@@ -10,35 +24,23 @@ module.exports = function(wallaby) {
     },
 
     compilers: {
-      '**/*.js': wallaby.compilers.babel({
-        presets: [['vue-app', { modules: 'commonjs' }], 'stage-2'],
-      }),
-      '**/*.vue': require('wallaby-vue-compiler')(
-        wallaby.compilers.babel({
-          presets: [['vue-app', { modules: 'commonjs' }], 'stage-2'],
-        })
-      ),
+      '**/*.js': compiler,
+      '**/*.vue': require('wallaby-vue-compiler')(compiler),
     },
 
     preprocessors: {
-      '**/*.vue': file =>
-        require('jest-vue-preprocessor').process(file.content, file.path),
+      '**/*.vue': file => require('vue-jest').process(file.content, file.path),
     },
 
     setup: function(wallaby) {
-      var jestConfig = require('./package.json').jest
-      if (!jestConfig.globals) {
-        jestConfig.globals = {}
-      }
-      jestConfig.moduleNameMapper = {
-        '^@/(.*)$': wallaby.projectCacheDir + '/src/$1',
-      }
-      jestConfig.globals['__DEV__'] = true
-      delete jestConfig.transform['\\.vue$']
+      const jestConfig = require('./package').jest || require('./jest.config')
+      delete jestConfig.transform['^.+\\.vue$']
+      delete jestConfig.transform['^.+\\.jsx?$']
       wallaby.testFramework.configure(jestConfig)
     },
 
     testFramework: 'jest',
+
     debug: true,
   }
 }
