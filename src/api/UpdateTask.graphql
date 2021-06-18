@@ -1,0 +1,24 @@
+mutation(
+  $clientMutationId: String!
+  $id: ID!
+  $description: String
+  $estimatedSize: Int
+) {
+  updateTask(
+    input: {
+      clientMutationId: $clientMutationId
+      id: $id
+      estimatedSize: $estimatedSize
+      description: $description
+    }
+  ) {
+    task {
+      id
+      description
+      estimatedSize
+      type
+      parentId
+      status
+    }
+  }
+}

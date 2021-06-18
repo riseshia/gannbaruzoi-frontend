@@ -52,6 +52,10 @@
     "*.vue": [
       "vue-cli-service lint",
       "git add"
+    ],
+    "*.graphql": [
+      "prettier --write",
+      "git add"
     ]
   }
 }
